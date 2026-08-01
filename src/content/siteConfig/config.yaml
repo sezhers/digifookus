@@ -25,7 +25,8 @@
   # Uncomment to use a logo or custom OG image.
   # Paths are relative to /public
 
-  logo: /digifookus-logo.png
+  # Used for schema.org Organization logo (Google prefers a square 1:1 image)
+  logo: /digifookus-logo-sq.png
   # ogImage: /images/og-default.jpg
 
   # ── Navigation ────────────────────────────────────────────────────────────────
