@@ -11,11 +11,30 @@ interface ArticleSchemaInput {
   authorUrl?: string;
   publisherName: string;
   publisherUrl?: string;
+  publisherLogo?: string;
   image: string;
   url: string;
   locale?: string;
   keywords?: string[];
   articleSection?: string;
+}
+
+interface OrganizationSchemaInput {
+  name: string;
+  url: string;
+  logo?: string;
+  sameAs?: string[];
+}
+
+export function buildOrganizationSchema(input: OrganizationSchemaInput): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: input.name,
+    url: input.url,
+    ...(input.logo && { logo: { "@type": "ImageObject", url: input.logo } }),
+    ...(input.sameAs?.length && { sameAs: input.sameAs }),
+  };
 }
 
 export interface BreadcrumbItem {
@@ -50,9 +69,12 @@ export function buildArticleSchema(input: ArticleSchemaInput): Record<string, un
       ...(input.authorUrl && { url: input.authorUrl }),
     },
     publisher: {
-      "@type": "Person",
+      "@type": "Organization",
       name: input.publisherName,
       ...(input.publisherUrl && { url: input.publisherUrl }),
+      ...(input.publisherLogo && {
+        logo: { "@type": "ImageObject", url: input.publisherLogo },
+      }),
     },
     image: input.image,
     url: input.url,

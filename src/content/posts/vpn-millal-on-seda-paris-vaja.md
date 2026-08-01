@@ -37,7 +37,7 @@ VPN loob krüpteeritud "tunneli" sinu seadme ja VPN-pakkuja serveri vahel. Kogu 
 
 **Ei tee sind anonüümseks.** VPN-pakkuja ise näeb sinu tegelikku liiklust — usaldad lihtsalt üht ettevõtet teise asemel. Kui pakkuja logib sinu tegevust ja see lekib või müüakse, oled sama haavatav kui enne.
 
-**Ei kaitse andmepüügi ega pahavara eest.** VPN krüpteerib ühenduse, aga ei kontrolli, kas link, millele klõpsad, on pettus. See on eraldi probleem (vt [andmepüügi artikkel](/artiklid/andmepuuk)).
+**Ei kaitse andmepüügi ega pahavara eest.** VPN krüpteerib ühenduse, aga ei kontrolli, kas link, millele klõpsad, on pettus. See on eraldi probleem (vt [andmepüügi artikkel](/turvalisus/andmepuuk)).
 
 **Ei asenda tugevaid paroole ega kahefaktorilist autentimist.** VPN kaitseb liiklust teel, mitte sinu kontosid.
 

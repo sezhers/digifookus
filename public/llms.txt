@@ -1,0 +1,25 @@
+# Digifookus
+
+> Eestikeelne veebileht digitaalsest maailmast — tehnoloogiast, tehisintellektist, digiteenustest, turvalisusest, privaatsusest, krüptograafiast, plokiahelast ja krüptorahadest, kirjutatud selgelt ja arusaadavalt ka väljaspool tehnikaringkondi.
+
+Digifookuse põhiautor on Sergei Ivanov, üks Eesti kogenumaid SEO spetsialiste.
+
+## Kategooriad
+
+- [Tehnoloogia](https://digifookus.ee/tehnoloogia): seadmed, tarkvara ja tööriistad, mis päriselt mõjutavad igapäevaelu
+- [Tehisintellekt](https://digifookus.ee/tehisintellekt): AI-mudelid ja -tööriistad, kuidas need päriselt töötavad
+- [Digiteenused](https://digifookus.ee/digiteenused): ülevaated ja juhendid digilahenduste kohta
+- [Turvalisus](https://digifookus.ee/turvalisus): praktilised soovitused andmete, seadmete ja identiteedi kaitseks
+- [Privaatsus](https://digifookus.ee/privaatsus): jälgimise vähendamine ja kontroll oma andmete üle
+- [Krüptograafia](https://digifookus.ee/kruptograafia): krüpteerimine, HTTPS, digiallkirjad
+- [Plokiahel](https://digifookus.ee/plokiahel): hajutatud andmebaasi tehnoloogia, väljaspool spekulatsiooni
+- [Krüptorahad](https://digifookus.ee/kruptorahad): Bitcoin, Ethereum ja teised, selgelt ja ilma haibita
+
+## Leheküljed
+
+- [Kõik artiklid](https://digifookus.ee/artiklid)
+- [Kõik märkmed](https://digifookus.ee/markmed)
+- [Arhiiv](https://digifookus.ee/arhiiv)
+- [Meist](https://digifookus.ee/meist)
+- [Autor: Sergei Ivanov](https://digifookus.ee/sergei)
+- [RSS](https://digifookus.ee/rss.xml)

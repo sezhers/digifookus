@@ -16,11 +16,11 @@ author: sergei
 
 ## Krüptograafia — meetod
 
-Krüptograafia on matemaatikal põhinev tehnika info kaitsmiseks. Sellest kirjutasime pikemalt [eraldi artiklis](/artiklid/mis-on-kruptograafia) — lühidalt: see on aluseks kõigele alates HTTPS-ist kuni sõnumirakenduste krüpteeringuni. Krüptograafial pole midagi otseselt tegemist ei raha ega plokiahelaga; see on tööriist, mida kasutatakse ka mujal, näiteks pangandustarkvaras ja e-riigi teenustes, kus krüptorahast pole juttugi.
+Krüptograafia on matemaatikal põhinev tehnika info kaitsmiseks. Sellest kirjutasime pikemalt [eraldi artiklis](/kruptograafia/mis-on-kruptograafia) — lühidalt: see on aluseks kõigele alates HTTPS-ist kuni sõnumirakenduste krüpteeringuni. Krüptograafial pole midagi otseselt tegemist ei raha ega plokiahelaga; see on tööriist, mida kasutatakse ka mujal, näiteks pangandustarkvaras ja e-riigi teenustes, kus krüptorahast pole juttugi.
 
 ## Plokiahel — tehnoloogia
 
-Plokiahel on hajutatud muutmiskindel andmebaas, mis kasutab krüptograafiat oma turvalisuse tagamiseks (vt [pikem selgitus](/artiklid/mis-on-plokiahel)). Plokiahelat saab kasutada ka ilma, et sellel liiguks ükski sent raha — näiteks dokumentide autentsuse tõestamiseks.
+Plokiahel on hajutatud muutmiskindel andmebaas, mis kasutab krüptograafiat oma turvalisuse tagamiseks (vt [pikem selgitus](/plokiahel/mis-on-plokiahel)). Plokiahelat saab kasutada ka ilma, et sellel liiguks ükski sent raha — näiteks dokumentide autentsuse tõestamiseks.
 
 ## Krüptoraha — üks rakendus
 

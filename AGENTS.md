@@ -314,6 +314,13 @@ Astro scaffold:
   config needed, driven by `getMetaValues()` in
   [utils/browse.ts](src/utils/browse.ts), which also has a fallback so any
   future `meta.<key>` dimension works the same way.
+  **Route collision risk**: category slugs live at the top level
+  (`/<category-slug>`), same as pages. A new page whose filename slugifies
+  to an existing category name (e.g. a page named `privaatsus.md` when
+  "Privaatsus" is a category) silently wins the route and the category
+  listing becomes unreachable — no build error. Current category slugs to
+  avoid for page filenames: `tehnoloogia`, `tehisintellekt`, `digiteenused`,
+  `turvalisus`, `privaatsus`, `kruptograafia`, `plokiahel`, `kruptorahad`.
 - **Search**: [Pagefind](https://pagefind.app), wired via its native
   Component UI (`@pagefind/component-ui` custom elements), not the
   `astro-pagefind` package. The index is built post-`astro build` (see the

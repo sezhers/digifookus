@@ -11,6 +11,7 @@ import { getAllPosts, getAllNotes, getPostUrl } from "@/utils/content";
 import { getCoverImage } from "@/utils/image";
 import { formatDate, slugify } from "@/utils/text";
 import { absoluteUrl, getAssetPath } from "@/utils/url";
+import { buildOrganizationSchema } from "@/utils/schema";
 
 const siteConfig = await getConfig();
 const allPosts = await getAllPosts();
@@ -38,10 +39,21 @@ const schema = {
   url: absoluteUrl("/", Astro.site),
   author: { "@type": "Person", name: siteConfig.author.name, url: siteConfig.author.url },
 };
+
+const organizationSchema = buildOrganizationSchema({
+  name: siteConfig.title,
+  url: absoluteUrl("/", Astro.site),
+  logo: siteConfig.logo ? absoluteUrl(siteConfig.logo, Astro.site) : undefined,
+  sameAs: siteConfig.social
+    ?.filter((s) => s.url.startsWith("http"))
+    .map((s) => s.url),
+});
+
+const schemas = [schema, organizationSchema];
 ---
 
 <BaseLayout>
-  <StructuredData schema={schema} slot="head" />
+  <StructuredData schema={schemas} slot="head" />
   <div class="layout-content">
     <PageHeader
       eyebrow={siteConfig.tagline}
