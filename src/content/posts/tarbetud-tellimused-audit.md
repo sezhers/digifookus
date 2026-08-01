@@ -12,11 +12,11 @@ lang: et
 author: sergei
 ---
 
-Striimimisteenus, mida proovisid kolm kuud tagasi. Rakendus, mille tasuta prooviperiood muutus märkamatult tasuliseks. Ajakirja tellimus, mida enam ei loe. Ükshaaval tunduvad need väikesed summad — kokku moodustavad need sageli üllatavalt suure osa kuueelarvest.
+Striimimisteenus, mida proovisid kolm kuud tagasi. Rakendus, mille tasuta prooviperiood muutus märkamatult tasuliseks. Ajakirja tellimus, mida enam ei loe. Ükshaaval tunduvad need väikesed summad — mõne kuu jooksul aga võivad need moodustada juba märkimisväärse summa.
 
 ## Miks tellimused kipuvad kogunema
 
-Tellimuspõhine mudel on ettevõtetele meelega hõlbustatud ühes suunas: liitumine võtab minuti, tühistamine nõuab sageli mitut klõpsu, sisselogimist ja mõnikord isegi klienditoega suhtlemist. See asümmeetria pole juhus — enamik tellimusi lõpetatakse sellepärast, et kasutaja lihtsalt unustab need üle vaadata, mitte sellepärast, et ta teadlikult otsustab jätkata.
+Erinevate ettevõtete tellimuspõhine mudel on meelega hõlbustatud ühes suunas: liitumine võtab vaid minuti, tühistamine aga nõuab sageli mitut klõpsu, sisselogimist ja mõnikord isegi klienditoega suhtlemist. See asümmeetria pole juhus — enamik tellimusi tiksub edasi sellepärast, et kasutaja lihtsalt unustab need üle vaadata, mitte sellepärast, et ta teadlikult otsustab jätkata.
 
 ## Samm-sammuline ülevaatus
 

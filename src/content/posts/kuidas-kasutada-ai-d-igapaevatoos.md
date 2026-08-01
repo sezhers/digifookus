@@ -20,7 +20,7 @@ Kõige suurem viga AI tööriistade kasutuselevõtul on proovida neid kasutada k
 
 **Pika teksti kokkuvõtte tegemine.** Pikk aruanne, koosoleku protokoll või uudisvoog — AI suudab need minutitega loetavaks kokkuvõtteks pakkida, mille põhjal saad otsustada, kas teema vajab süvenemist.
 
-**Korduvate vormide täitmine.** Kui kirjutad regulaarselt sarnase struktuuriga tekste (kliendivastused, sotsiaalmeedia postitused, koosoleku kutsed), saab mudelile õpetada mustri ja lasta tal seda igal korral kohandada.
+**Korduvate vormide täitmine.** Kui kirjutad regulaarselt sarnase struktuuriga tekste (kliendivastused, sotsiaalmeedia postitused, koosoleku kutsed), saab mudelile mustrit õpetada ja lasta tal teha mall, mida ta ka saab igal korral kohandada ning sina vajadusel ainult toimetada.
 
 **Mustri äratundmine tabelis või andmestikus.** AI on hea leidma seaduspärasid, kordumisi ja anomaaliaid struktureeritud andmetes — kasulik nii eelarve ülevaatamisel kui klientide tagasiside analüüsimisel.
 
@@ -32,6 +32,8 @@ Kõige suurem viga AI tööriistade kasutuselevõtul on proovida neid kasutada k
 
 **Kui kontroll on olulisem kui kiirus.** Isiklikud või emotsionaalselt tundlikud sõnumid (nt tagasiside andmine kolleegile) tasub ise kirjutada — toon ja nüansid lähevad AI käes kergesti kaotsi.
 
+**Vale tööriist ülesande jaoks.** Erinevatel AI tööriistadel on oma tugevused ja nõrkused — uuri esmalt, mis tööriist sobib sinu ülesande jaoks, või proovi ise kõik tööriistad läbi, et leida just see õige.
+
 ## Üks lihtne harjumus
 
-Enne mudelile ülesande andmist proovi kirjutada see ise ühe lausega välja: mida sa täpselt tahad, mis vormis ja kellele. See "üks lause" nõue sunnib sind ülesannet enda jaoks selgeks mõtlema — ja tulemus paraneb märgatavalt, sõltumata sellest, millist tööriista kasutad.
+Enne mudelile ülesande andmist proovi kirjutada see ise ühe lausega välja: mida sa täpselt tahad, mis vormis ja kellele. See "üks lause" nõue sunnib sind ülesannet enda jaoks selgeks mõtlema — tulemus paraneb märgatavalt, sõltumata sellest, millist tööriista kasutad.

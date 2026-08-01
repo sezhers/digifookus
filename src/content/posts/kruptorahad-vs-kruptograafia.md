@@ -1,6 +1,6 @@
 ---
 title: Krüptorahad vs krüptograafia — mille poolest need erinevad?
-description: Kolm terminit, mida sageli kokku aetakse — krüptograafia, plokiahel ja krüptoraha —, aga mis tähendavad tegelikult kolme eri asja.
+description: Kolm terminit, mida sageli kokku aetakse — krüptograafia, plokiahel ja krüptoraha — aga mis tähendavad tegelikult kolme eri asja.
 published: 2026-08-02
 category: Krüptorahad
 tags:
@@ -20,11 +20,11 @@ Krüptograafia on matemaatikal põhinev tehnika info kaitsmiseks. Sellest kirjut
 
 ## Plokiahel — tehnoloogia
 
-Plokiahel on hajutatud, muutmiskindel andmebaas, mis kasutab krüptograafiat oma turvalisuse tagamiseks (vt [pikem selgitus](/artiklid/mis-on-plokiahel)). Plokiahelat saab kasutada ka ilma, et sellel liiguks üks sentki raha — näiteks dokumentide autentsuse tõestamiseks.
+Plokiahel on hajutatud muutmiskindel andmebaas, mis kasutab krüptograafiat oma turvalisuse tagamiseks (vt [pikem selgitus](/artiklid/mis-on-plokiahel)). Plokiahelat saab kasutada ka ilma, et sellel liiguks ükski sent raha — näiteks dokumentide autentsuse tõestamiseks.
 
 ## Krüptoraha — üks rakendus
 
-Krüptoraha (Bitcoin, Ethereum ja sarnased) on plokiahela peale ehitatud digitaalne vara. See on kõige tuntum plokiahela rakendus, aga kaugeltki mitte ainus — ja plokiahela olemasolu ei tähenda, et raha on automaatselt turvaline investeering. Krüptoraha hind kõigub, seadusandlus on riigiti erinev ja maksustamise reeglid Eestis vajavad omaette tähelepanu.
+Krüptoraha (Bitcoin, Ethereum ja sarnased) on plokiahela peale ehitatud digitaalne vara. See on kõige tuntum plokiahela rakendus, aga kaugeltki mitte ainus — ja plokiahela olemasolu ei tähenda, et see raha on automaatselt turvaline investeering. Krüptoraha hind kõigub, seadusandlus on riigiti erinev ja maksustamise reeglid Eestis ning mujal maailmas vajavad omaette tähelepanu.
 
 ## Miks vahe loeb
 

@@ -16,18 +16,18 @@ Veel mõni aasta tagasi oli eesti keel enamiku tehisintellekti tööriistade jao
 
 ## Mida hinnata, kui valid tööriista
 
-**Keeleoskus pole ainult tõlkimine.** Hea test pole "kas mudel mõistab eesti keelt", vaid "kas mudel kirjutab eesti keelt loomulikult" — kas käänded, kokku-lahkukirjutus ja lauserütm kõlavad nagu inimese kirjutatud, mitte tõlgitud tekst.
+**Keeleoskus pole ainult tõlkimine.** Hea test pole "kas mudel mõistab eesti keelt", vaid "kas mudel kirjutab eesti keeles loomulikult" — kas käänded, kokku-lahkukirjutus ja lauserütm kõlavad nagu inimese kirjutatud, mitte tõlgitud tekst.
 
 **Kontekst ja mälu.** Pikemate tekstide, dokumentide või koodibaaside puhul on oluline, kui palju teksti mudel korraga "meeles" hoiab — see mõjutab, kas ta suudab viidata varasemale lõigule või unustab, millest juttu oli.
 
-**Privaatsus.** Kui sisestad tööriistale tundlikku infot (kliendiandmed, sisedokumendid), tasub kontrollida, kas ja kuidas pakkuja sinu sisendeid mudeli edasiseks treenimiseks kasutab — enamik suuremaid pakkujaid võimaldab seda ärikasutajatel välja lülitada, aga vaikimisi seaded on erinevad.
+**Privaatsus.** Kui sisestad tundlikku infot (kliendiandmed, sisedokumendid), tasub kontrollida, kas ja kuidas pakkuja sinu sisendeid mudeli edasiseks treenimiseks kasutab — enamik suuremaid pakkujaid võimaldab seda ärikasutajatel välja lülitada, aga vaikimisi seaded on erinevad.
 
 ## Levinud kasutusjuhud
 
-- **Kirjutamine ja toimetamine** — mustandite kiirendamine, tooni kohandamine, korduva teksti (nt kliendikirjade) mustrite järgi kirjutamine.
+- **Kirjutamine ja toimetamine** — mustandite kiirendamine, tooni kohandamine, korduva teksti (nt kliendikirjade) mustrite/mallide järgi kirjutamine.
 - **Kokkuvõtete tegemine** — pikkade dokumentide, koosolekute või uudiste lühikokkuvõtted.
 - **Programmeerimise abistamine** — koodi selgitamine, vigade leidmine, korduvate mustrite kiire genereerimine.
-- **Uurimistöö algus** — laiapõhjaliste teemade kaardistamine enne süvitsi minekut (aga alati koos allikate ise kontrollimisega — mudelid võivad eksida enesekindlalt).
+- **Uurimistöö algus** — laiapõhjaliste teemade kaardistamine enne süvitsi minekut (aga alati koos allikate ise kontrollimisega — mudelid võivad eksida ja seda väga enesekindlalt).
 
 ## Üks levinud viga
 
