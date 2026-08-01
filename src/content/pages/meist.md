@@ -27,18 +27,29 @@ Artiklite juures on kirjas nende autor. Digifookuse põhiautoriks on [Sergei](/s
 
 ## Kontakt
 
-<form
-  action="https://formspree.io/f/mnjekbqz"
-  method="POST"
->
-  <label>
-    E-posti aadress:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Sõnum:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Saada</button>
+<form action="https://formspree.io/f/mnjekbqz" method="POST" class="contact-form">
+<!-- Inimese kontroll / Robotilõks (Honeypot) -->
+<input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off" />
+
+<div class="form-group">
+	<label for="name">Sinu nimi</label>
+	<input type="text" id="name" name="name" required placeholder="Mari Maasikas" />
+</div>
+
+<div class="form-group">
+	<label for="email">E-posti aadress</label>
+	<input type="email" id="email" name="email" required placeholder="mari@näide.ee" />
+</div>
+
+<div class="form-group">
+	<label for="subject">Teema</label>
+	<input type="text" id="subject" name="subject" required placeholder="Koostöösoov / Küsimus" />
+</div>
+
+<div class="form-group">
+	<label for="message">Sõnum</label>
+	<textarea id="message" name="message" rows="5" required placeholder="Kirjuta siia oma sõnum..."></textarea>
+</div>
+
+<button type="submit">Saada sõnum</button>
 </form>
