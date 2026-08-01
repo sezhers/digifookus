@@ -63,9 +63,9 @@ export default defineConfig({
         smartPunctuation: { quotes: true, dashes: true, ellipses: true },
         gfm: {
           footnotes: {
-            label: "Footnotes",
+            label: "Viited",
             backContent: "↑",
-            backLabel: "Back to reference {reference}",
+            backLabel: "Tagasi viite {reference} juurde",
           }
         },
         subscript: true,

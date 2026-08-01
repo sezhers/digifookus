@@ -1,20 +1,20 @@
 import type { UserConfig } from './types'
 
 export const defaultConfig: UserConfig = {
-  title:       'Patrika',
-  description: 'A field notebook, kept in the open',
-  url:         'https://example.com',
-  locale:      'en',
+  title:       'Digifookus',
+  description: 'Digitaalsest maailmast, tehnoloogiast ja tehisintellektist',
+  url:         'https://digifookus.ee',
+  locale:      'et',
 
   author: {
-    name: 'Your Name',
+    name: 'Sergei',
   },
 
   navigation: [
-    { title: 'Essays',  url: '/artiklid' },
-    { title: 'Notes',   url: '/markmed' },
-    { title: 'Archive', url: '/arhiiv' },
-    { title: 'About',   url: '/about' },
+    { title: 'Artiklid', url: '/artiklid' },
+    { title: 'Märkmed',  url: '/markmed' },
+    { title: 'Arhiiv',   url: '/arhiiv' },
+    { title: 'Meist',    url: '/meist' },
   ],
 
   footerLinks: [
@@ -23,7 +23,7 @@ export const defaultConfig: UserConfig = {
 
   social: [],
 
-  heroText:     'A field notebook, kept in the open',
+  heroText:     'Digitaalsest maailmast, tehnoloogiast ja tehisintellektist',
   tagline:      '',
   postsPerPage: 10,
   recentPosts:  5,

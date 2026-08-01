@@ -25,4 +25,49 @@ const siteConfig = await getConfig();
   </div>
   <pagefind-config bundle-path={getAssetPath("pagefind/")}></pagefind-config>
   <pagefind-modal></pagefind-modal>
+  <script is:inline>
+    customElements.whenDefined("pagefind-modal").then(() => {
+      const translations = {
+        placeholder: "Otsi",
+        clear_search: "Tühjenda",
+        load_more: "Laadi rohkem tulemusi",
+        search_label: "Otsi sellelt saidilt",
+        filters_label: "Filtrid",
+        zero_results: "Tulemusi ei leitud otsingule [SEARCH_TERM]",
+        many_results: "[COUNT] tulemust otsingule [SEARCH_TERM]",
+        one_result: "[COUNT] tulemus otsingule [SEARCH_TERM]",
+        total_zero_results: "Tulemusi ei leitud",
+        total_one_result: "[COUNT] tulemus",
+        total_many_results: "[COUNT] tulemust",
+        alt_search: "Tulemusi ei leitud otsingule [SEARCH_TERM]. Kuvatakse tulemused otsingule [DIFFERENT_TERM]",
+        search_suggestion: "Tulemusi ei leitud otsingule [SEARCH_TERM]. Proovi mõnda järgnevat otsingut:",
+        searching: "Otsin: [SEARCH_TERM]...",
+        results_label: "Otsingutulemused",
+        keyboard_navigate: "liikumine",
+        keyboard_select: "valimine",
+        keyboard_clear: "tühjendamine",
+        keyboard_close: "sulgemine",
+        keyboard_search: "otsimine",
+        error_search: "Otsing ebaõnnestus",
+        filter_selected_one: "[COUNT] valitud",
+        filter_selected_many: "[COUNT] valitud",
+        input_hint: "Tulemused ilmuvad kirjutamise ajal",
+        loading: "Laadimine",
+      };
+
+      const modal = document.querySelector("pagefind-modal");
+      const apply = () => modal.instance?.setTranslations(translations);
+
+      if (modal.instance) {
+        apply();
+      } else {
+        const iv = setInterval(() => {
+          if (modal.instance) {
+            apply();
+            clearInterval(iv);
+          }
+        }, 50);
+      }
+    });
+  </script>
 </header>

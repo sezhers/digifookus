@@ -34,7 +34,7 @@ const ogImageUrl = absoluteUrl(ogImage ?? getOgImagePath(activePath), Astro.site
 
 ---
 <!doctype html>
-<html class="overflow-y-scroll scroll-smooth">
+<html lang={siteConfig.locale ?? "et"} class="overflow-y-scroll scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
