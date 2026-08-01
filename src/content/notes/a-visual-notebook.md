@@ -20,4 +20,4 @@ Two frames in particular keep coming back to me — see [[#Two of the sketches]]
 
 ![A single frame](../posts/attachments/map-600x400.png)
 
-A note on looking twice: it isn't so different from [[The habit of underlining]] — the image doesn't change, but what you're prepared to notice in it does.
+A note on looking twice: the image doesn't change, but what you're prepared to notice in it does.

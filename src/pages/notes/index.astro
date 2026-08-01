@@ -8,12 +8,12 @@ import { getAllNotes } from "@/utils/content";
 const allNotes = await getAllNotes();
 ---
 
-<BaseLayout title="Notes">
+<BaseLayout title="Märkmed">
   <div class="layout-content">
     <PageHeader
-      eyebrow="Notes"
-      title="Notes"
-      lede="Short and provisional — the habit of writing things down carefully."
+      eyebrow="Märkmed"
+      title="Märkmed"
+      lede="Lühikesed ja mõtted käigult üles kirjutatuna."
     />
     <Section>
       <NotesGrid notes={allNotes} />

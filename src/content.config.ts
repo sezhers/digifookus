@@ -41,6 +41,7 @@ const posts = defineCollection({
     featured:    z.boolean().default(false),
     draft:       z.boolean().default(false),
     lang:        z.string().optional(),
+    author:      z.string().optional(),
     series:      z.string().optional(),
     seriesOrder: z.number().int().positive().optional(),
     meta:        metaSchema,

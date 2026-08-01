@@ -19,7 +19,7 @@ export async function GET(context: APIContext) {
         entry.collection === "posts"
           ? getPostUrl(entry.id, entry.filePath)
           : getNoteUrl(entry.id, entry.filePath),
-      categories: [entry.collection === "posts" ? "Essay" : "Note"],
+      categories: [entry.collection === "posts" ? "Artikkel" : "Märge"],
     })),
   });
 }

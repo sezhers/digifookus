@@ -4,7 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import ImageWrapper from "@/components/ImageWrapper.astro";
 import GalleryLightbox from "@/components/GalleryLightbox.astro";
 import StructuredData from "@/components/StructuredData.astro";
-import { getAllPosts, getPostSlugPath } from "@/utils/content";
+import { getAllPosts, getAllPages, getPostSlugPath, getPageSlugPath, getPageUrl } from "@/utils/content";
 import { getCoverImage } from "@/utils/image";
 import { formatDate, calculateReadingTime } from "@/utils/text";
 import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
@@ -27,6 +27,13 @@ const cover = getCoverImage(post.data.cover);
 const date = formatDate(post.data.published);
 const readingTime = calculateReadingTime(post.body ?? "");
 
+const allPages = await getAllPages();
+const authorPage = post.data.author
+  ? allPages.find((p) => getPageSlugPath(p.id, p.filePath) === post.data.author)
+  : undefined;
+const authorName = authorPage?.data.title ?? siteConfig.author.name;
+const authorUrl = authorPage ? getPageUrl(authorPage.id, authorPage.filePath) : undefined;
+
 const postPath = `/posts/${getPostSlugPath(post.id, post.filePath)}`;
 const schema = {
   "@context": "https://schema.org",
@@ -35,7 +42,7 @@ const schema = {
   description: post.data.description,
   datePublished: post.data.published.toISOString(),
   dateModified: (post.data.updated ?? post.data.published).toISOString(),
-  author: { "@type": "Person", name: siteConfig.author.name },
+  author: { "@type": "Person", name: authorName },
   image: absoluteUrl(getOgImagePath(postPath), Astro.site),
   url: absoluteUrl(postPath, Astro.site),
 };
@@ -49,7 +56,7 @@ const schema = {
         href={getAssetPath("posts")}
         class="not-prose font-mono text-xs uppercase tracking-wide text-clay hover:underline"
       >
-        ← Essays
+        ← Artiklid
       </a>
 
       {cover && (
@@ -76,6 +83,17 @@ const schema = {
         <span class="font-mono text-xs uppercase text-muted-foreground">
           {readingTime.text}
         </span>
+        {authorUrl && (
+          <>
+            <span class="text-muted-foreground/50">·</span>
+            <a
+              href={authorUrl}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
+              {authorName}
+            </a>
+          </>
+        )}
       </div>
 
       <hr class="not-prose mt-6 border-border/50" />

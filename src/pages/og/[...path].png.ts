@@ -43,31 +43,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 
   // ── Fixed routes ────────────────────────────────────────────────────────
-  add('home', { eyebrow: siteConfig.tagline ?? siteConfig.title, title: siteConfig.title });
-  add('posts', { eyebrow: siteConfig.title, title: 'Essays' });
-  add('notes', { eyebrow: siteConfig.title, title: 'Notes' });
-  add('archive', { eyebrow: siteConfig.title, title: 'Archive' });
-  add('browse', { eyebrow: siteConfig.title, title: 'Browse' });
-  add('browse/years', { eyebrow: 'Browse', title: 'Years' });
+  add('home', { eyebrow: siteConfig.tagline || siteConfig.title, title: siteConfig.title });
+  add('posts', { eyebrow: siteConfig.title, title: 'Artiklid' });
+  add('notes', { eyebrow: siteConfig.title, title: 'Märkmed' });
+  add('archive', { eyebrow: siteConfig.title, title: 'Arhiiv' });
+  add('browse', { eyebrow: siteConfig.title, title: 'Sirvi' });
+  add('browse/years', { eyebrow: 'Sirvi', title: 'Aastad' });
 
   // ── Browse: years ───────────────────────────────────────────────────────
   for (const year of getYears(allEntries)) {
-    add(`browse/years/${year}`, { eyebrow: 'Browse — Year', title: year });
+    add(`browse/years/${year}`, { eyebrow: 'Sirvi — aasta', title: year });
   }
 
   // ── Browse: configured indexes + values ─────────────────────────────────
   for (const index of indexes) {
-    add(`browse/${index.slug}`, { eyebrow: 'Browse', title: index.title });
+    add(`browse/${index.slug}`, { eyebrow: 'Sirvi', title: index.title });
 
     for (const { value, slug } of getMetaValues(allEntries, index.key)) {
-      add(`browse/${index.slug}/${slug}`, { eyebrow: `Browse — ${index.title}`, title: value });
+      add(`browse/${index.slug}/${slug}`, { eyebrow: `Sirvi — ${index.title}`, title: value });
     }
   }
 
   // ── Posts ───────────────────────────────────────────────────────────────
   for (const post of allPosts) {
     add(`posts/${getPostSlugPath(post.id, post.filePath)}`, {
-      eyebrow: post.data.category ?? 'Essay',
+      eyebrow: post.data.category ?? 'Artikkel',
       title:   post.data.title,
     });
   }
@@ -75,7 +75,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // ── Notes ───────────────────────────────────────────────────────────────
   for (const note of allNotes) {
     add(`notes/${getNoteSlugPath(note.id, note.filePath)}`, {
-      eyebrow: note.data.category ?? 'Note',
+      eyebrow: note.data.category ?? 'Märge',
       title:   note.data.title,
     });
   }
@@ -83,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // ── Pages ───────────────────────────────────────────────────────────────
   for (const page of allPages) {
     add(getPageSlugPath(page.id, page.filePath), {
-      eyebrow: 'Page',
+      eyebrow: 'Leht',
       title:   page.data.title,
     });
   }

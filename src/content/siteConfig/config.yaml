@@ -16,9 +16,9 @@
   # ── Author ────────────────────────────────────────────────────────────────────
 
   author:
-    name: Sergei Ivanov           # ← replace
+    name: Sergei Ivanov
     bio: Üks Eesti kogenumaid SEO spetsialiste, kellele meeldivad erinevad tehnoloogiad, digitaalsed lahendused ja kiiresti muutuv maailm.
-    url: https://hornet.ee  # ← replace
+    url: https://hornet.ee
     # avatar: /images/avatar.jpg
 
   # ── Assets ───────────────────────────────────────────────────────────────────
@@ -32,21 +32,19 @@
   # Top navigation links. Order here is order in the nav bar.
 
   navigation:
-    - title: Articles
+    - title: Artiklid
       url: /posts
-    - title: Notes
+    - title: Märkmed
       url: /notes
-    - title: Archive
+    - title: Arhiiv
       url: /archive
-    - title: About
-      url: /about
+    - title: Meist
+      url: /meist
 
   # ── Footer links ──────────────────────────────────────────────────────────────
 
   footerLinks:
-    - title: Now
-      url: /now
-    - title: Colophon
+    - title: Koloofon
       url: /colophon
     - title: RSS
       url: /rss.xml
@@ -68,10 +66,10 @@
   # ── Content display ───────────────────────────────────────────────────────────
 
   # Shown as the opening line on the garden homepage
-  heroText: Notes, observations, and the occasional long read.  # ← replace
+  heroText: Tehnoloogiast, tehisintellektist ja turvalisusest — selgelt ja arusaadavalt.
 
   # Shown in the footer (optional — remove the line to hide)
-  footerCredits: ""  # ← replace with your tagline, or delete this line
+  footerCredits: ""
 
   # Number of posts shown per archive page
   postsPerPage: 8
@@ -92,10 +90,3 @@
 
   browse:
     years: true
-    indexes:
-      - key: place
-        title: Places
-        slug: places
-      - key: trip
-        title: Trips
-        slug: trips

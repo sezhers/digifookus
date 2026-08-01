@@ -23,16 +23,16 @@ const allPosts = await getAllPosts();
 const allNotes = await getAllNotes();
 ---
 
-<BaseLayout title={`${year} · Browse`}>
+<BaseLayout title={`${year} · Sirvi`}>
   <div class="layout-content">
     <a
       href={getAssetPath("browse/years")}
       class="font-mono text-xs uppercase tracking-wide text-clay hover:underline"
     >
-      ← Years
+      ← Aastad
     </a>
 
-    <PageHeader eyebrow=" Browse — Year" title={year} />
+    <PageHeader eyebrow=" Sirvi — aasta" title={year} />
 
     <BrowseTabs defaultTab="all">
       <Fragment slot="all">

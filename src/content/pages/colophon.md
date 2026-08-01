@@ -1,15 +1,15 @@
 ---
-title: Colophon
+title: Koloofon
 ---
 
-## Built with
+## Millega on tehtud
 
-[Patrika](https://github.com/thelocalhoststudio/patrika) — a field notebook template built on Astro 7 and Tailwind CSS v4. Content lives in Obsidian and is published from there.
+Sait on ehitatud [Astro](https://astro.build) peale, kasutades [Patrika](https://github.com/thelocalhoststudio/patrika) mallistikku ja Tailwind CSS v4-e.
 
-## Typography
+## Kirjatüübid
 
-Body text is set in Literata, a book typeface designed for extended reading. Metadata, labels, and navigation use Space Mono.
+Põhitekst on laotud Literata kirjaga, mis on loodud pikemaks lugemiseks. Metaandmed, sildid ja navigatsioon kasutavad Space Mono kirja.
 
-## Hosting
+## Majutus
 
-Deployed to Cloudflare Pages. No tracking, no analytics, no cookies.
+Sait ei kasuta jälgimist, analüütikat ega küpsiseid.

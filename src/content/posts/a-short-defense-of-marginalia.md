@@ -8,6 +8,7 @@ tags:
   - reading
 draft: false
 lang: en
+author: sergei
 cover: "posts/attachments/600x400.png"
 meta:
   place: Osaka

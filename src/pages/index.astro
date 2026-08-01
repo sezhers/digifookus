@@ -48,7 +48,7 @@ const schema = {
       title={siteConfig.title}
       lede={siteConfig.heroText}
     />
-		<Section title="Recent Articles" href="/posts">
+		<Section title="Viimased artiklid" href="/posts">
 			<!-- Lead Entry -->
       {featuredEntry && (
         <article class="grid items-start gap-8 sm:grid-cols-[1.2fr_1fr]">
@@ -88,7 +88,7 @@ const schema = {
                 href={getPostUrl(featuredEntry.id, featuredEntry.filePath)}
                 class="font-mono text-sm text-muted-foreground hover:text-foreground"
               >
-                Read →
+                Loe →
               </a>
             </div>
 
@@ -103,7 +103,7 @@ const schema = {
 		</Section>
 
 		<Section
-  		title="Recent Notes"
+  		title="Viimased märkmed"
   		href="/notes"
       class="mt-6"
 		>

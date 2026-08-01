@@ -26,7 +26,7 @@ export const defaultConfig: UserConfig = {
   social: [],
 
   heroText:     'A field notebook, kept in the open',
-  tagline:      'attention · craft · slowness',
+  tagline:      '',
   postsPerPage: 10,
   recentPosts:  5,
   showLogo:     false,

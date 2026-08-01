@@ -1,11 +1,3 @@
-export function getSeason(date: Date): 'Spring' | 'Summer' | 'Monsoon' | 'Winter' {
-  const m = date.getMonth() + 1;
-  if (m === 3 || m === 4) return 'Spring';
-  if (m === 5 || m === 6) return 'Summer';
-  if (m >= 7 && m <= 9)  return 'Monsoon';
-  return 'Winter';
-}
-
 export function readingTime(body: string): number {
   const words = body.trim().split(/\s+/).length;
   return Math.ceil(words / 200);
@@ -18,7 +10,7 @@ export function formatSeriesTitle(slug: string): string {
 }
 
 export function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-IN', {
+  return date.toLocaleDateString('et-EE', {
     day:   '2-digit',
     month: 'short',
     year:  'numeric',
@@ -26,7 +18,7 @@ export function formatDate(date: Date): string {
 }
 
 export function formatMonthYear(date: Date): string {
-  return date.toLocaleDateString('en-IN', {
+  return date.toLocaleDateString('et-EE', {
     month: 'short',
     year:  'numeric',
   })
@@ -89,7 +81,7 @@ export function calculateReadingTime(
   wordsPerMinute = 200
 ): ReadingTime {
   if (!content || typeof content !== "string") {
-    return { text: "1 min read", minutes: 1, time: 60000, words: 0 };
+    return { text: "1 min lugemist", minutes: 1, time: 60000, words: 0 };
   }
 
   const plainText = content
@@ -107,7 +99,7 @@ export function calculateReadingTime(
   const minutes   = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 
   return {
-    text: `${minutes} min read`,
+    text: `${minutes} min lugemist`,
     minutes,
     time: minutes * 60 * 1000,
     words: wordCount,
