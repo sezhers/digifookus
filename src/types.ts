@@ -11,18 +11,6 @@ export interface SocialItem {
   icon?: SocialIcon
 }
 
-/** One browsable dimension, sourced from `meta[key]` on posts/notes. */
-export interface BrowseIndexConfig {
-  key:   string  // child key inside an entry's `meta` object
-  title: string  // display title, e.g. "Places"
-  slug:  string  // URL segment, e.g. "places" -> /browse/places
-}
-
-export interface BrowseConfig {
-  years?:   boolean
-  indexes?: BrowseIndexConfig[]
-}
-
 export interface UserConfig {
   // site identity
   title:       string
@@ -57,7 +45,4 @@ export interface UserConfig {
 
   // flags
   showLogo?: boolean
-
-  // browsing
-  browse?: BrowseConfig
 }

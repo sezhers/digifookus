@@ -3,8 +3,8 @@ import { render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import GalleryLightbox from "@/components/GalleryLightbox.astro";
 import StructuredData from "@/components/StructuredData.astro";
-import { getAllNotes, getNoteSlugPath, buildBacklinkMap } from "@/utils/content";
-import { formatDate } from "@/utils/text";
+import { getAllNotes, getAllPages, getNoteSlugPath, getPageSlugPath, getPageUrl, buildBacklinkMap } from "@/utils/content";
+import { formatDate, slugify } from "@/utils/text";
 import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
 import { getConfig } from "@/utils/config";
 
@@ -33,7 +33,14 @@ const backlinks = [
   ).values(),
 ];
 
-const notePath = `/notes/${noteSlug}`;
+const allPages = await getAllPages();
+const authorPage = note.data.author
+  ? allPages.find((p) => getPageSlugPath(p.id, p.filePath) === note.data.author)
+  : undefined;
+const authorName = authorPage?.data.title ?? siteConfig.author.name;
+const authorUrl = authorPage ? getPageUrl(authorPage.id, authorPage.filePath) : undefined;
+
+const notePath = `/markmed/${noteSlug}`;
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -41,7 +48,7 @@ const schema = {
   description: note.data.description ?? siteConfig.description,
   datePublished: note.data.published.toISOString(),
   dateModified: (note.data.updated ?? note.data.published).toISOString(),
-  author: { "@type": "Person", name: siteConfig.author.name },
+  author: { "@type": "Person", name: authorName },
   image: absoluteUrl(getOgImagePath(notePath), Astro.site),
   url: absoluteUrl(notePath, Astro.site),
 };
@@ -52,7 +59,7 @@ const schema = {
   <div class="layout-content">
     <article class="markdown-content mx-auto max-w-3xl py-8">
       <a
-        href={getAssetPath("notes")}
+        href={getAssetPath("markmed")}
         class="not-prose font-mono text-xs uppercase tracking-wide text-clay hover:underline"
       >
         ← Märkmed
@@ -72,9 +79,23 @@ const schema = {
         {note.data.category && (
           <>
             <span class="text-muted-foreground/50">·</span>
-            <span class="font-mono text-xs uppercase text-muted-foreground">
+            <a
+              href={getAssetPath(slugify(note.data.category))}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
               {note.data.category}
-            </span>
+            </a>
+          </>
+        )}
+        {authorUrl && (
+          <>
+            <span class="text-muted-foreground/50">·</span>
+            <a
+              href={authorUrl}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
+              {authorName}
+            </a>
           </>
         )}
       </div>
@@ -97,7 +118,7 @@ const schema = {
             {backlinks.map((link) => (
               <li>
                 <a
-                  href={getAssetPath(`notes/${link.slug}`)}
+                  href={getAssetPath(`markmed/${link.slug}`)}
                   class="font-serif text-foreground hover:underline"
                 >
                   {link.title}

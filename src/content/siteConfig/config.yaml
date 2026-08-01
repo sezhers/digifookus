@@ -33,19 +33,17 @@
 
   navigation:
     - title: Artiklid
-      url: /posts
+      url: /artiklid
     - title: Märkmed
-      url: /notes
+      url: /markmed
     - title: Arhiiv
-      url: /archive
+      url: /arhiiv
     - title: Meist
       url: /meist
 
   # ── Footer links ──────────────────────────────────────────────────────────────
 
   footerLinks:
-    - title: Koloofon
-      url: /colophon
     - title: RSS
       url: /rss.xml
 
@@ -81,12 +79,3 @@
 
   # Set to true if you have a logo defined above
   showLogo: false
-
-  # ── Browse ────────────────────────────────────────────────────────────────────
-  # Generic index pages built from an optional `meta` object in post/note
-  # frontmatter. Each entry below turns `meta.<key>` into a browsable
-  # dimension at /browse/<slug>. Unconfigured meta keys are ignored.
-  # `slug` must not be "years" (that path is reserved for the date index).
-
-  browse:
-    years: true

@@ -266,14 +266,14 @@ export function getPageUrl(
  * Full post URL.
  *
  * Example:
- * "/posts/travel/japan/tokyo"
+ * "/artiklid/travel/japan/tokyo"
  */
 export function getPostUrl(
   id: string,
   filePath?: string
 ): string {
   return getAssetPath(
-    `posts/${getPostSlugPath(id, filePath)}`
+    `artiklid/${getPostSlugPath(id, filePath)}`
   );
 }
 
@@ -339,14 +339,14 @@ export function getNoteSlug(
  * Full note URL.
  *
  * Example:
- * "/notes/tech/self-hosting"
+ * "/markmed/tech/self-hosting"
  */
 export function getNoteUrl(
   id: string,
   filePath?: string
 ): string {
   return getAssetPath(
-    `notes/${getNoteSlugPath(id, filePath)}`
+    `markmed/${getNoteSlugPath(id, filePath)}`
   );
 }
 
@@ -369,8 +369,8 @@ export async function buildBacklinkMap(): Promise<Map<string, { title: string; s
       map.get(key)!.push(entry);
     }
 
-    // markdown links: [text](/notes/slug)
-    for (const match of body.matchAll(/\[([^\]]+)\]\(\/notes\/([^)#]+)/g)) {
+    // markdown links: [text](/markmed/slug)
+    for (const match of body.matchAll(/\[([^\]]+)\]\(\/markmed\/([^)#]+)/g)) {
       const key = match[2];
       if (!map.has(key)) map.set(key, []);
       map.get(key)!.push(entry);

@@ -1,7 +1,7 @@
 /**
  * Sätteri MDAST plugins for Patrika.
  *
- * wikilinkResolver — converts wikilink hrefs (raw title, URL-encoded) to /notes/slug paths.
+ * wikilinkResolver — converts wikilink hrefs (raw title, URL-encoded) to /markmed/slug paths.
  * directiveToHtml  — converts :::aside and :::annotation container directives to HTML divs.
  *
  * Both run as hastPlugins / mdastPlugins on the Sätteri processor.
@@ -49,7 +49,7 @@ export const wikilinkResolver = {
       const heading = hashIndex === -1 ? '' : decoded.slice(hashIndex + 1);
       const slug = slugify(page);
       const anchor = heading ? `#${slugify(heading)}` : '';
-      ctx.setProperty(node, 'href', `/notes/${slug}${anchor}`);
+      ctx.setProperty(node, 'href', `/markmed/${slug}${anchor}`);
     },
   },
 };

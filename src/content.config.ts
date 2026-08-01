@@ -24,8 +24,7 @@ const pages = defineCollection({
 });
 
 // Author-defined extension point — Patrika assigns no meaning to any key
-// inside `meta`. See site.config.ts's `browse.indexes` for how a key
-// becomes a browsable dimension.
+// inside `meta`.
 const metaSchema = z.record(z.string(), z.union([z.string(), z.array(z.string())])).optional();
 
 const posts = defineCollection({
@@ -35,7 +34,7 @@ const posts = defineCollection({
     description: z.string(),
     published:   z.coerce.date(),
     updated:     z.coerce.date().optional(),
-    category:    z.string().optional().default('Travels'),
+    category:    z.string().optional(),
     tags:        z.array(z.string()).transform(removeDupsAndLowerCase).optional(),
     cover:       z.string().optional(),
     featured:    z.boolean().default(false),
@@ -60,6 +59,7 @@ const notes = defineCollection({
     color:       z.string().optional(),
     tags:      z.array(z.string()).transform(removeDupsAndLowerCase).optional(),
     lang:      z.string().optional(),
+    author:    z.string().optional(),
     meta:      metaSchema,
   }),
 });
@@ -99,14 +99,6 @@ const siteConfig = defineCollection({
     postsPerPage:   z.number().optional(),
     recentPosts:    z.number().optional(),
     showLogo:       z.boolean().optional(),
-    browse: z.object({
-      years:   z.boolean().optional(),
-      indexes: z.array(z.object({
-        key:   z.string(),
-        title: z.string(),
-        slug:  z.string(),
-      })).optional(),
-    }).optional(),
   }),
 })
 

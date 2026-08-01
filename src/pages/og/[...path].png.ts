@@ -15,7 +15,7 @@ import {
   getNoteSlugPath,
   getPageSlugPath,
 } from '@/utils/content';
-import { getMetaValues, getYears } from '@/utils/browse';
+import { getMetaValues } from '@/utils/browse';
 import { renderOgImage } from '@/utils/og-image';
 
 export const prerender = true;
@@ -27,7 +27,6 @@ interface CardProps {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const siteConfig = await getConfig();
-  const indexes = siteConfig.browse?.indexes ?? [];
 
   const [allPosts, allNotes, allPages, allEntries] = await Promise.all([
     getAllPosts(),
@@ -44,29 +43,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   // ── Fixed routes ────────────────────────────────────────────────────────
   add('home', { eyebrow: siteConfig.tagline || siteConfig.title, title: siteConfig.title });
-  add('posts', { eyebrow: siteConfig.title, title: 'Artiklid' });
-  add('notes', { eyebrow: siteConfig.title, title: 'Märkmed' });
-  add('archive', { eyebrow: siteConfig.title, title: 'Arhiiv' });
-  add('browse', { eyebrow: siteConfig.title, title: 'Sirvi' });
-  add('browse/years', { eyebrow: 'Sirvi', title: 'Aastad' });
+  add('artiklid', { eyebrow: siteConfig.title, title: 'Artiklid' });
+  add('markmed', { eyebrow: siteConfig.title, title: 'Märkmed' });
+  add('arhiiv', { eyebrow: siteConfig.title, title: 'Arhiiv' });
 
-  // ── Browse: years ───────────────────────────────────────────────────────
-  for (const year of getYears(allEntries)) {
-    add(`browse/years/${year}`, { eyebrow: 'Sirvi — aasta', title: year });
-  }
-
-  // ── Browse: configured indexes + values ─────────────────────────────────
-  for (const index of indexes) {
-    add(`browse/${index.slug}`, { eyebrow: 'Sirvi', title: index.title });
-
-    for (const { value, slug } of getMetaValues(allEntries, index.key)) {
-      add(`browse/${index.slug}/${slug}`, { eyebrow: `Sirvi — ${index.title}`, title: value });
-    }
+  // ── Categories ──────────────────────────────────────────────────────────
+  for (const { value, slug } of getMetaValues(allEntries, 'category')) {
+    add(slug, { eyebrow: 'Kategooria', title: value });
   }
 
   // ── Posts ───────────────────────────────────────────────────────────────
   for (const post of allPosts) {
-    add(`posts/${getPostSlugPath(post.id, post.filePath)}`, {
+    add(`artiklid/${getPostSlugPath(post.id, post.filePath)}`, {
       eyebrow: post.data.category ?? 'Artikkel',
       title:   post.data.title,
     });
@@ -74,7 +62,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   // ── Notes ───────────────────────────────────────────────────────────────
   for (const note of allNotes) {
-    add(`notes/${getNoteSlugPath(note.id, note.filePath)}`, {
+    add(`markmed/${getNoteSlugPath(note.id, note.filePath)}`, {
       eyebrow: note.data.category ?? 'Märge',
       title:   note.data.title,
     });

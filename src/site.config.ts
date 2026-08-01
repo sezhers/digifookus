@@ -11,16 +11,14 @@ export const defaultConfig: UserConfig = {
   },
 
   navigation: [
-    { title: 'Essays',  url: '/posts' },
-    { title: 'Notes',   url: '/notes' },
-    { title: 'Archive', url: '/archive' },
+    { title: 'Essays',  url: '/artiklid' },
+    { title: 'Notes',   url: '/markmed' },
+    { title: 'Archive', url: '/arhiiv' },
     { title: 'About',   url: '/about' },
   ],
 
   footerLinks: [
-    { title: 'Now',      url: '/now' },
-    { title: 'Colophon', url: '/colophon' },
-    { title: 'RSS',      url: '/rss.xml' },
+    { title: 'RSS', url: '/rss.xml' },
   ],
 
   social: [],
@@ -30,10 +28,4 @@ export const defaultConfig: UserConfig = {
   postsPerPage: 10,
   recentPosts:  5,
   showLogo:     false,
-
-  // Generic, no assumed keys — real indexes are configured per-site (see config.yaml).
-  browse: {
-    years:   true,
-    indexes: [],
-  },
 }

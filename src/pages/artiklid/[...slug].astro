@@ -6,7 +6,7 @@ import GalleryLightbox from "@/components/GalleryLightbox.astro";
 import StructuredData from "@/components/StructuredData.astro";
 import { getAllPosts, getAllPages, getPostSlugPath, getPageSlugPath, getPageUrl } from "@/utils/content";
 import { getCoverImage } from "@/utils/image";
-import { formatDate, calculateReadingTime } from "@/utils/text";
+import { formatDate, calculateReadingTime, slugify } from "@/utils/text";
 import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
 import { getConfig } from "@/utils/config";
 
@@ -34,7 +34,7 @@ const authorPage = post.data.author
 const authorName = authorPage?.data.title ?? siteConfig.author.name;
 const authorUrl = authorPage ? getPageUrl(authorPage.id, authorPage.filePath) : undefined;
 
-const postPath = `/posts/${getPostSlugPath(post.id, post.filePath)}`;
+const postPath = `/artiklid/${getPostSlugPath(post.id, post.filePath)}`;
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -53,7 +53,7 @@ const schema = {
   <div class="layout-content">
     <article class="annotated markdown-content mx-auto max-w-4xl py-8">
       <a
-        href={getAssetPath("posts")}
+        href={getAssetPath("artiklid")}
         class="not-prose font-mono text-xs uppercase tracking-wide text-clay hover:underline"
       >
         ← Artiklid
@@ -83,6 +83,17 @@ const schema = {
         <span class="font-mono text-xs uppercase text-muted-foreground">
           {readingTime.text}
         </span>
+        {post.data.category && (
+          <>
+            <span class="text-muted-foreground/50">·</span>
+            <a
+              href={getAssetPath(slugify(post.data.category))}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
+              {post.data.category}
+            </a>
+          </>
+        )}
         {authorUrl && (
           <>
             <span class="text-muted-foreground/50">·</span>

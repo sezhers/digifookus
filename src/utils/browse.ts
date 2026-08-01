@@ -2,9 +2,10 @@
  * Browse utilities.
  *
  * Purely mechanical: these functions read whatever key they're given out of
- * an entry's `meta` object and compare slugs. They assign no meaning to any
- * key — "place", "trip", or anything else is only ever a config value
- * passed in by the caller (see site.config.ts's `browse.indexes`).
+ * an entry's `meta` object, falling back to a same-named top-level field
+ * (e.g. `category`) if `meta` doesn't have it. They assign no meaning to the
+ * key themselves — the caller decides what it means (see
+ * src/pages/[category]/index.astro).
  */
 
 import type { Post, Note } from "./content";
@@ -18,17 +19,17 @@ export interface BrowseValue {
 }
 
 function metaValuesOf(entry: Entry, key: string): string[] {
-  const raw = entry.data.meta?.[key];
+  const raw = entry.data.meta?.[key] ?? (entry.data as Record<string, unknown>)[key];
 
   if (!raw) return [];
 
-  return Array.isArray(raw) ? raw : [raw];
+  return Array.isArray(raw) ? raw : [String(raw)];
 }
 
 /**
- * Every unique value configured `key` takes across the given entries,
+ * Every unique value the given `key` takes across the given entries,
  * sorted alphabetically. Each value carries its slug (for linking to
- * /browse/<indexSlug>/<valueSlug>).
+ * /<valueSlug>).
  */
 export function getMetaValues(entries: Entry[], key: string): BrowseValue[] {
   const bySlug = new Map<string, string>();
@@ -55,21 +56,5 @@ export function filterByMetaSlug(
 ): Entry[] {
   return entries.filter((entry) =>
     metaValuesOf(entry, key).some((value) => slugify(value) === valueSlug)
-  );
-}
-
-/** Unique publication years across the given entries, newest first. */
-export function getYears(entries: Entry[]): string[] {
-  const years = new Set(
-    entries.map((entry) => String(entry.data.published.getFullYear()))
-  );
-
-  return Array.from(years).sort((a, b) => Number(b) - Number(a));
-}
-
-/** Entries published in the given year. */
-export function filterByYear(entries: Entry[], year: string): Entry[] {
-  return entries.filter(
-    (entry) => String(entry.data.published.getFullYear()) === year
   );
 }

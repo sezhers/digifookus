@@ -9,8 +9,8 @@ import StructuredData from "@/components/StructuredData.astro";
 import { getConfig } from "@/utils/config";
 import { getAllPosts, getAllNotes, getPostUrl } from "@/utils/content";
 import { getCoverImage } from "@/utils/image";
-import { formatDate } from "@/utils/text";
-import { absoluteUrl } from "@/utils/url";
+import { formatDate, slugify } from "@/utils/text";
+import { absoluteUrl, getAssetPath } from "@/utils/url";
 
 const siteConfig = await getConfig();
 const allPosts = await getAllPosts();
@@ -28,7 +28,7 @@ const feedPosts = featuredEntry
   : [];
 
 const coverImage = getCoverImage(featuredEntry?.data.cover);
-const dateLabel = formatDate(featuredEntry?.data.published);
+const dateLabel = featuredEntry ? formatDate(featuredEntry.data.published) : undefined;
 
 const schema = {
   "@context": "https://schema.org",
@@ -48,7 +48,7 @@ const schema = {
       title={siteConfig.title}
       lede={siteConfig.heroText}
     />
-		<Section title="Viimased artiklid" href="/posts">
+		<Section title="Viimased artiklid" href="/artiklid">
 			<!-- Lead Entry -->
       {featuredEntry && (
         <article class="grid items-start gap-8 sm:grid-cols-[1.2fr_1fr]">
@@ -66,9 +66,14 @@ const schema = {
                 {dateLabel}
               </span>
 
-              <span class="font-mono text-xs uppercase text-muted-foreground">
-                {featuredEntry.data.category}
-              </span>
+              {featuredEntry.data.category && (
+                <a
+                  href={getAssetPath(slugify(featuredEntry.data.category))}
+                  class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+                >
+                  {featuredEntry.data.category}
+                </a>
+              )}
             </div>
 
             <div class="space-y-3">
@@ -104,7 +109,7 @@ const schema = {
 
 		<Section
   		title="Viimased märkmed"
-  		href="/notes"
+  		href="/markmed"
       class="mt-6"
 		>
   		<NotesGrid notes={recentNotes} />

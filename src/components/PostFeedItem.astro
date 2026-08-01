@@ -3,7 +3,8 @@ import type { CollectionEntry } from "astro:content";
 import ImageWrapper from "@/components/ImageWrapper.astro";
 import { getCoverImage } from "@/utils/image";
 import { getPostUrl, getNoteUrl } from "@/utils/content";
-import { formatDate, formatMonthYear } from "@/utils/text";
+import { formatDate, formatMonthYear, slugify } from "@/utils/text";
+import { getAssetPath } from "@/utils/url";
 
 interface Props {
   post: CollectionEntry<"posts"> | CollectionEntry<"notes">;
@@ -95,9 +96,12 @@ const isArchive = variant === "archive";
         </time>
 
         {post.data.category && (
-          <span class="font-mono text-xs uppercase text-muted-foreground">
+          <a
+            href={getAssetPath(slugify(post.data.category))}
+            class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+          >
             {post.data.category}
-          </span>
+          </a>
         )}
       </div>
 
