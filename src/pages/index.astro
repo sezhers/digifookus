@@ -78,7 +78,7 @@ const schema = {
 
             <div class="space-y-3">
               <h3 class="font-serif text-2xl leading-tight">
-                <a href={getPostUrl(featuredEntry.id, featuredEntry.filePath)}>
+                <a href={getPostUrl(featuredEntry.id, featuredEntry.filePath, featuredEntry.data.category)}>
                   {featuredEntry.data.title}
                 </a>
               </h3>
@@ -90,7 +90,7 @@ const schema = {
 
             <div class="mt-auto">
               <a
-                href={getPostUrl(featuredEntry.id, featuredEntry.filePath)}
+                href={getPostUrl(featuredEntry.id, featuredEntry.filePath, featuredEntry.data.category)}
                 class="font-mono text-sm text-muted-foreground hover:text-foreground"
               >
                 Loe →

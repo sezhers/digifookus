@@ -1,0 +1,137 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ImageWrapper from "@/components/ImageWrapper.astro";
+import GalleryLightbox from "@/components/GalleryLightbox.astro";
+import StructuredData from "@/components/StructuredData.astro";
+import { getAllPages, getPostSlugPath, getPageSlugPath, getPageUrl, getPostUrl } from "@/utils/content";
+import { getCoverImage } from "@/utils/image";
+import { formatDate, calculateReadingTime, slugify } from "@/utils/text";
+import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
+import { getConfig } from "@/utils/config";
+import { buildArticleSchema, buildBreadcrumbSchema } from "@/utils/schema";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const siteConfig = await getConfig();
+const cover = getCoverImage(post.data.cover);
+const date = formatDate(post.data.published);
+const readingTime = calculateReadingTime(post.body ?? "");
+
+const allPages = await getAllPages();
+const authorPage = post.data.author
+  ? allPages.find((p) => getPageSlugPath(p.id, p.filePath) === post.data.author)
+  : undefined;
+const authorName = authorPage?.data.title ?? siteConfig.author.name;
+const authorUrl = authorPage ? getPageUrl(authorPage.id, authorPage.filePath) : undefined;
+
+const postPath = getPostUrl(post.id, post.filePath, post.data.category);
+const backHref = post.data.category ? getAssetPath(slugify(post.data.category)) : getAssetPath("artiklid");
+const backLabel = post.data.category ?? "Artiklid";
+
+const schema = buildArticleSchema({
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.published,
+  dateModified: post.data.updated,
+  authorName,
+  authorUrl: authorUrl ? absoluteUrl(authorUrl, Astro.site) : siteConfig.author.url,
+  publisherName: siteConfig.author.name,
+  publisherUrl: siteConfig.author.url,
+  image: absoluteUrl(getOgImagePath(postPath), Astro.site),
+  url: absoluteUrl(postPath, Astro.site),
+  locale: siteConfig.locale,
+  keywords: post.data.tags,
+  articleSection: post.data.category,
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: siteConfig.title, url: absoluteUrl("/", Astro.site) },
+  { name: "Artiklid", url: absoluteUrl(getAssetPath("artiklid"), Astro.site) },
+  ...(post.data.category
+    ? [{ name: post.data.category, url: absoluteUrl(getAssetPath(slugify(post.data.category)), Astro.site) }]
+    : []),
+  { name: post.data.title, url: absoluteUrl(postPath, Astro.site) },
+]);
+
+const schemas = [schema, breadcrumbSchema];
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} type="article">
+  <StructuredData schema={schemas} slot="head" />
+  <div class="layout-content">
+    <article class="annotated markdown-content mx-auto max-w-4xl py-8">
+      <a
+        href={backHref}
+        class="not-prose font-mono text-xs uppercase tracking-wide text-clay hover:underline"
+      >
+        ← {backLabel}
+      </a>
+
+      {cover && (
+        <ImageWrapper
+          src={cover}
+          alt={post.data.title}
+          bare
+          class="not-prose mt-6 aspect-[2/1] w-full object-cover"
+        />
+      )}
+
+      <h1 class="not-prose mt-8 font-serif text-4xl leading-tight">
+        {post.data.title}
+      </h1>
+
+      <div class="not-prose mt-4 flex items-center gap-2">
+        <time
+          datetime={post.data.published.toISOString()}
+          class="rounded-xs border border-border px-1 font-mono text-xs uppercase tabular-nums text-muted-foreground"
+        >
+          {date}
+        </time>
+        <span class="text-muted-foreground/50">·</span>
+        <span class="font-mono text-xs uppercase text-muted-foreground">
+          {readingTime.text}
+        </span>
+        {post.data.category && (
+          <>
+            <span class="text-muted-foreground/50">·</span>
+            <a
+              href={getAssetPath(slugify(post.data.category))}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
+              {post.data.category}
+            </a>
+          </>
+        )}
+        {authorUrl && (
+          <>
+            <span class="text-muted-foreground/50">·</span>
+            <a
+              href={authorUrl}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
+              {authorName}
+            </a>
+          </>
+        )}
+      </div>
+
+      <hr class="not-prose mt-6 border-border/50" />
+
+      <aside data-pagefind-body>
+        <meta data-pagefind-meta="title[content]" content={post.data.title} />
+        <meta data-pagefind-sort="date[content]" content={post.data.published.toISOString()} />
+        <meta data-pagefind-filter="collection[content]" content={post.collection} />
+        <meta data-pagefind-filter="category[content]" content={post.data.category} />
+        <Content />
+      </aside>
+    </article>
+  </div>
+  <GalleryLightbox />
+</BaseLayout>
