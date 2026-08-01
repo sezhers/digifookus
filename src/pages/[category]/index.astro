@@ -3,9 +3,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHeader from "@/components/PageHeader.astro";
 import BrowseTabs from "@/components/BrowseTabs.astro";
 import BrowseList from "@/components/BrowseList.astro";
+import StructuredData from "@/components/StructuredData.astro";
 import { getAllPosts, getAllNotes, getAllEntries } from "@/utils/content";
 import { getMetaValues, filterByMetaSlug } from "@/utils/browse";
-import { getAssetPath } from "@/utils/url";
+import { getAssetPath, absoluteUrl } from "@/utils/url";
+import { getConfig } from "@/utils/config";
+import { buildBreadcrumbSchema } from "@/utils/schema";
 
 export async function getStaticPaths() {
   const allEntries = await getAllEntries();
@@ -26,9 +29,17 @@ const { category: categorySlug } = Astro.params;
 const allEntries = await getAllEntries();
 const allPosts = await getAllPosts();
 const allNotes = await getAllNotes();
+
+const siteConfig = await getConfig();
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: siteConfig.title, url: absoluteUrl("/", Astro.site) },
+  { name: "Arhiiv", url: absoluteUrl(getAssetPath("arhiiv"), Astro.site) },
+  { name: categoryName, url: absoluteUrl(getAssetPath(categorySlug!), Astro.site) },
+]);
 ---
 
 <BaseLayout title={categoryName}>
+  <StructuredData schema={breadcrumbSchema} slot="head" />
   <div class="layout-content">
     <a
       href={getAssetPath("arhiiv")}

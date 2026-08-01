@@ -3,12 +3,23 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHeader from "@/components/PageHeader.astro";
 import PostFeed from "@/components/PostFeed.astro";
 import Section from "@/components/Section.astro";
+import StructuredData from "@/components/StructuredData.astro";
 import { getAllPosts } from "@/utils/content";
+import { absoluteUrl, getAssetPath } from "@/utils/url";
+import { getConfig } from "@/utils/config";
+import { buildBreadcrumbSchema } from "@/utils/schema";
 
 const allPosts = await getAllPosts();
+
+const siteConfig = await getConfig();
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: siteConfig.title, url: absoluteUrl("/", Astro.site) },
+  { name: "Artiklid", url: absoluteUrl(getAssetPath("artiklid"), Astro.site) },
+]);
 ---
 
 <BaseLayout title="Artiklid">
+  <StructuredData schema={breadcrumbSchema} slot="head" />
   <div class="layout-content">
     <PageHeader
       eyebrow="Artiklid"

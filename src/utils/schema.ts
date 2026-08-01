@@ -18,6 +18,24 @@ interface ArticleSchemaInput {
   articleSection?: string;
 }
 
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export function buildBreadcrumbSchema(items: BreadcrumbItem[]): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
 export function buildArticleSchema(input: ArticleSchemaInput): Record<string, unknown> {
   return {
     "@context": "https://schema.org",

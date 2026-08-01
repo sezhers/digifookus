@@ -7,7 +7,7 @@ import { getAllNotes, getAllPages, getNoteSlugPath, getPageSlugPath, getPageUrl,
 import { formatDate, slugify } from "@/utils/text";
 import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
 import { getConfig } from "@/utils/config";
-import { buildArticleSchema } from "@/utils/schema";
+import { buildArticleSchema, buildBreadcrumbSchema } from "@/utils/schema";
 
 export async function getStaticPaths() {
   const notes = await getAllNotes();
@@ -57,10 +57,21 @@ const schema = buildArticleSchema({
   keywords: note.data.tags,
   articleSection: note.data.category,
 });
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: siteConfig.title, url: absoluteUrl("/", Astro.site) },
+  { name: "Märkmed", url: absoluteUrl(getAssetPath("markmed"), Astro.site) },
+  ...(note.data.category
+    ? [{ name: note.data.category, url: absoluteUrl(getAssetPath(slugify(note.data.category)), Astro.site) }]
+    : []),
+  { name: note.data.title, url: absoluteUrl(notePath, Astro.site) },
+]);
+
+const schemas = [schema, breadcrumbSchema];
 ---
 
 <BaseLayout title={note.data.title} description={note.data.description} type="article">
-  <StructuredData schema={schema} slot="head" />
+  <StructuredData schema={schemas} slot="head" />
   <div class="layout-content">
     <article class="markdown-content mx-auto max-w-3xl py-8">
       <a

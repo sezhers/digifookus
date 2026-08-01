@@ -4,8 +4,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHeader from "@/components/PageHeader.astro";
 import StructuredData from "@/components/StructuredData.astro";
 import { getAllPages, getPageSlugPath, getPageUrl } from "@/utils/content";
-import { absoluteUrl } from "@/utils/url";
+import { absoluteUrl, getAssetPath } from "@/utils/url";
 import { getConfig } from "@/utils/config";
+import { buildBreadcrumbSchema } from "@/utils/schema";
 
 export async function getStaticPaths() {
   const pages = await getAllPages();
@@ -31,10 +32,20 @@ const personSchema = page.data.isPerson
       ...(page.data.sameAs?.length && { sameAs: page.data.sameAs }),
     }
   : undefined;
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: siteConfig.title, url: absoluteUrl("/", Astro.site) },
+  ...(page.data.isPerson
+    ? [{ name: "Meist", url: absoluteUrl(getAssetPath("meist"), Astro.site) }]
+    : []),
+  { name: page.data.title, url: absoluteUrl(pageUrl, Astro.site) },
+]);
+
+const schemas = [...(personSchema ? [personSchema] : []), breadcrumbSchema];
 ---
 
 <BaseLayout title={page.data.title}>
-  {personSchema && <StructuredData schema={personSchema} slot="head" />}
+  <StructuredData schema={schemas} slot="head" />
   <div class="layout-content">
     <PageHeader title={page.data.title} />
 

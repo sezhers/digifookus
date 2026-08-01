@@ -9,7 +9,7 @@ import { getCoverImage } from "@/utils/image";
 import { formatDate, calculateReadingTime, slugify } from "@/utils/text";
 import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
 import { getConfig } from "@/utils/config";
-import { buildArticleSchema } from "@/utils/schema";
+import { buildArticleSchema, buildBreadcrumbSchema } from "@/utils/schema";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -51,10 +51,21 @@ const schema = buildArticleSchema({
   keywords: post.data.tags,
   articleSection: post.data.category,
 });
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: siteConfig.title, url: absoluteUrl("/", Astro.site) },
+  { name: "Artiklid", url: absoluteUrl(getAssetPath("artiklid"), Astro.site) },
+  ...(post.data.category
+    ? [{ name: post.data.category, url: absoluteUrl(getAssetPath(slugify(post.data.category)), Astro.site) }]
+    : []),
+  { name: post.data.title, url: absoluteUrl(postPath, Astro.site) },
+]);
+
+const schemas = [schema, breadcrumbSchema];
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description} type="article">
-  <StructuredData schema={schema} slot="head" />
+  <StructuredData schema={schemas} slot="head" />
   <div class="layout-content">
     <article class="annotated markdown-content mx-auto max-w-4xl py-8">
       <a
