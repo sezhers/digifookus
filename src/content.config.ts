@@ -17,9 +17,11 @@ function removeDupsAndLowerCase(array: string[]) {
 const pages = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/pages' }),
   schema: z.object({
-    title:   z.string(),
-    updated: z.coerce.date().optional(),
-    lang:    z.string().optional(),
+    title:    z.string(),
+    updated:  z.coerce.date().optional(),
+    lang:     z.string().optional(),
+    isPerson: z.boolean().optional(),
+    sameAs:   z.array(z.string()).optional(),
   }),
 });
 

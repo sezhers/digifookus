@@ -1,0 +1,24 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import { getAssetPath } from "@/utils/url";
+---
+
+<BaseLayout title="Lehte ei leitud">
+  <div class="layout-content">
+    <PageHeader
+      eyebrow="404"
+      title="Lehte ei leitud"
+      lede="Otsitud lehte ei ole olemas või on see teisaldatud."
+    />
+
+    <div class="py-8">
+      <a
+        href={getAssetPath("/")}
+        class="font-mono text-sm text-muted-foreground hover:text-foreground hover:underline"
+      >
+        ← Tagasi avalehele
+      </a>
+    </div>
+  </div>
+</BaseLayout>

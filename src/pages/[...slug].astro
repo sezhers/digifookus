@@ -2,7 +2,10 @@
 import { render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHeader from "@/components/PageHeader.astro";
-import { getAllPages, getPageSlugPath } from "@/utils/content";
+import StructuredData from "@/components/StructuredData.astro";
+import { getAllPages, getPageSlugPath, getPageUrl } from "@/utils/content";
+import { absoluteUrl } from "@/utils/url";
+import { getConfig } from "@/utils/config";
 
 export async function getStaticPaths() {
   const pages = await getAllPages();
@@ -15,9 +18,23 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { Content } = await render(page);
+
+const siteConfig = await getConfig();
+const pageUrl = getPageUrl(page.id, page.filePath);
+const personSchema = page.data.isPerson
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: page.data.title,
+      url: absoluteUrl(pageUrl, Astro.site),
+      ...(siteConfig.author.bio && { description: siteConfig.author.bio }),
+      ...(page.data.sameAs?.length && { sameAs: page.data.sameAs }),
+    }
+  : undefined;
 ---
 
 <BaseLayout title={page.data.title}>
+  {personSchema && <StructuredData schema={personSchema} slot="head" />}
   <div class="layout-content">
     <PageHeader title={page.data.title} />
 

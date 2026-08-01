@@ -9,6 +9,7 @@ import { getCoverImage } from "@/utils/image";
 import { formatDate, calculateReadingTime, slugify } from "@/utils/text";
 import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
 import { getConfig } from "@/utils/config";
+import { buildArticleSchema } from "@/utils/schema";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -35,17 +36,21 @@ const authorName = authorPage?.data.title ?? siteConfig.author.name;
 const authorUrl = authorPage ? getPageUrl(authorPage.id, authorPage.filePath) : undefined;
 
 const postPath = `/artiklid/${getPostSlugPath(post.id, post.filePath)}`;
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
+const schema = buildArticleSchema({
   headline: post.data.title,
   description: post.data.description,
-  datePublished: post.data.published.toISOString(),
-  dateModified: (post.data.updated ?? post.data.published).toISOString(),
-  author: { "@type": "Person", name: authorName },
+  datePublished: post.data.published,
+  dateModified: post.data.updated,
+  authorName,
+  authorUrl: authorUrl ? absoluteUrl(authorUrl, Astro.site) : siteConfig.author.url,
+  publisherName: siteConfig.author.name,
+  publisherUrl: siteConfig.author.url,
   image: absoluteUrl(getOgImagePath(postPath), Astro.site),
   url: absoluteUrl(postPath, Astro.site),
-};
+  locale: siteConfig.locale,
+  keywords: post.data.tags,
+  articleSection: post.data.category,
+});
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description} type="article">
