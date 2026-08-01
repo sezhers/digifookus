@@ -303,13 +303,17 @@ Astro scaffold:
   [src/plugins/](src/plugins/) (`satteri.ts`, `satteri-gallery.ts`) and are
   wired in [astro.config.mjs](astro.config.mjs). Supported Obsidian-flavored
   syntax: wikilinks and image embeds (native to Sätteri), `%%comments%%` and
-  `==highlights==` (custom plugin), `:::aside`/`:::annotation` directives,
-  inline image galleries with a lightbox (GLightbox), and note backlinks
+  `==highlights==` (custom plugin), `:::aside`/`:::annotation` margin-note
+  directives, `:::quote{author="Name"}` attributed pull-quotes, inline image
+  galleries with a lightbox (GLightbox), and note backlinks
   (`buildBacklinkMap()` in [utils/content.ts](src/utils/content.ts)).
-- **Browse system**: a generic, `meta`-driven browsing index at `/browse`,
-  configured entirely from `config.yaml`'s `browse` key — it has no
-  hardcoded knowledge of what metadata keys mean. See
-  [src/pages/browse/](src/pages/browse/).
+- **Categories**: posts/notes carry a plain `category` string field (schema
+  in [content.config.ts](src/content.config.ts)). Each distinct value gets
+  a flat top-level route automatically via
+  [src/pages/[category]/index.astro](src/pages/[category]/index.astro) — no
+  config needed, driven by `getMetaValues()` in
+  [utils/browse.ts](src/utils/browse.ts), which also has a fallback so any
+  future `meta.<key>` dimension works the same way.
 - **Search**: [Pagefind](https://pagefind.app), wired via its native
   Component UI (`@pagefind/component-ui` custom elements), not the
   `astro-pagefind` package. The index is built post-`astro build` (see the

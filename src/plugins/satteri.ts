@@ -2,7 +2,7 @@
  * Sätteri MDAST plugins for Patrika.
  *
  * wikilinkResolver — converts wikilink hrefs (raw title, URL-encoded) to /markmed/slug paths.
- * directiveToHtml  — converts :::aside and :::annotation container directives to HTML divs.
+ * directiveToHtml  — converts :::aside, :::annotation, and :::quote container directives to HTML.
  *
  * Both run as hastPlugins / mdastPlugins on the Sätteri processor.
  */
@@ -126,6 +126,21 @@ export const directiveToHtml = {
   name: 'directive-to-html',
   containerDirective(node: any, ctx: any) {
     const name: string = node.name;
+
+    if (name === 'quote') {
+      const children: any[] = Array.isArray(node.children) ? node.children : [];
+      const innerHtml = children.map(extractHtml).join('\n');
+
+      const author: string | undefined = node.attributes?.author;
+      const authorHtml = author
+        ? `\n<figcaption class="quote__author">${escapeHtml(author)}</figcaption>`
+        : '';
+
+      const fullHtml = `<figure class="quote"><blockquote>${innerHtml}</blockquote>${authorHtml}</figure>`;
+      ctx.replaceNode(node, { type: 'html', value: fullHtml });
+      return;
+    }
+
     if (name !== 'aside' && name !== 'annotation') return;
 
     const children: any[] = Array.isArray(node.children) ? node.children : [];
