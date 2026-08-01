@@ -20,5 +20,13 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# setting folders
 .idea/
+.vscode/
+
+# agent working state
+.codex/
+.claude/
+
+# pagefind results
+public/pagefind/

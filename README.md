@@ -1,43 +1,63 @@
-# Astro Starter Kit: Minimal
+# Patrika
+
+A notebook-inspired personal publishing theme built with Astro. Not a blog
+theme — it draws on commonplace books, field notebooks, literary journals,
+and printed magazines, favoring typography and whitespace over decoration.
+
+See [AGENTS.md](AGENTS.md) for the full design philosophy and current
+implementation reference.
+
+## Features
+
+- **Content collections** for essays, notes, and standalone pages, plus a
+  config-as-content `siteConfig` collection.
+- **Obsidian-flavored markdown** — wikilinks (`[[Page]]`, `[[Page#Heading]]`),
+  image embeds, `%%comments%%`, `==highlights==`, and `:::aside`/`:::annotation`
+  directives, powered by a native [Sätteri](https://www.npmjs.com/package/satteri)
+  markdown pipeline (not remark/unified).
+- **Backlinks** between notes, computed from wikilinks.
+- **Inline image galleries** with a lightbox (GLightbox) for consecutive
+  images in a post or note.
+- **A generic browse system** (`/browse`) driven entirely by an optional
+  `meta` object in frontmatter and a `browse` config block — no hardcoded
+  metadata keys.
+- **Search** via [Pagefind](https://pagefind.app)'s native Component UI.
+- **RSS and sitemap** out of the box.
+
+## Quickstart
 
 ```sh
-npm create astro@latest -- --template minimal
+pnpm install
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Then:
 
-## 🚀 Project Structure
+1. Edit [src/content/siteConfig/config.yaml](src/content/siteConfig/config.yaml)
+   — set your real domain (`url`), author, navigation, and social links.
+2. Set the matching `site` value in [astro.config.mjs](astro.config.mjs)
+   (required for RSS/sitemap to generate correct absolute URLs).
+3. Add your own writing under `src/content/posts/`, `src/content/notes/`,
+   and `src/content/pages/`, replacing the sample entries there.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Command        | Action                                                                 |
+| :------------- | :---------------------------------------------------------------------|
+| `pnpm install` | Install dependencies                                                  |
+| `pnpm dev`     | Start the dev server at `localhost:4321`                               |
+| `pnpm build`   | Build to `./dist/`, then build the Pagefind search index and copy it into `public/` |
+| `pnpm preview` | Preview the production build locally                                   |
+| `pnpm astro …` | Run any Astro CLI command (`astro check`, `astro add`, …)              |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Customization
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **Fonts** — the `fonts` array in `astro.config.mjs`.
+- **Colors and typography** — `src/styles/`.
+- **Browse dimensions** (e.g. places, trips) — the `browse` key in
+  `config.yaml`; each entry turns a `meta.<key>` frontmatter field into a
+  browsable index at `/browse/<slug>`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Learn more
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+[Astro documentation](https://docs.astro.build)
