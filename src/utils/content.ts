@@ -263,17 +263,18 @@ export function getPageUrl(
 }
 
 /**
- * Full post URL.
- *
- * Example:
- * "/artiklid/travel/japan/tokyo"
+ * Full post URL — nested under the post's category when it has one
+ * (e.g. "/plokiahel/mis-on-plokiahel"), falling back to "/artiklid/<slug>"
+ * for posts without a category.
  */
 export function getPostUrl(
   id: string,
-  filePath?: string
+  filePath?: string,
+  category?: string
 ): string {
+  const prefix = category ? slugify(category) : "artiklid";
   return getAssetPath(
-    `artiklid/${getPostSlugPath(id, filePath)}`
+    `${prefix}/${getPostSlugPath(id, filePath)}`
   );
 }
 

@@ -1,0 +1,11 @@
+# Old /artiklid/<slug> URLs → new /<kategooria>/<slug> URLs
+/artiklid/andmepuuk /turvalisus/andmepuuk 301
+/artiklid/kruptorahad-vs-kruptograafia /kruptorahad/kruptorahad-vs-kruptograafia 301
+/artiklid/kuidas-kasutada-ai-d-igapaevatoos /tehisintellekt/kuidas-kasutada-ai-d-igapaevatoos 301
+/artiklid/mis-on-kruptograafia /kruptograafia/mis-on-kruptograafia 301
+/artiklid/mis-on-plokiahel /plokiahel/mis-on-plokiahel 301
+/artiklid/nutikodu-seadmed-algajale /tehnoloogia/nutikodu-seadmed-algajale 301
+/artiklid/tarbetud-tellimused-audit /digiteenused/tarbetud-tellimused-audit 301
+/artiklid/tehisintellekti-tooriistad-eesti-keeles /tehisintellekt/tehisintellekti-tooriistad-eesti-keeles 301
+/artiklid/tugev-parool-ja-paroolihaldurid /turvalisus/tugev-parool-ja-paroolihaldurid 301
+/artiklid/vpn-millal-on-seda-paris-vaja /privaatsus/vpn-millal-on-seda-paris-vaja 301

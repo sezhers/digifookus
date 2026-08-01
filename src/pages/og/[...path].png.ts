@@ -17,6 +17,7 @@ import {
 } from '@/utils/content';
 import { getMetaValues } from '@/utils/browse';
 import { renderOgImage } from '@/utils/og-image';
+import { slugify } from '@/utils/text';
 
 export const prerender = true;
 
@@ -54,7 +55,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   // ── Posts ───────────────────────────────────────────────────────────────
   for (const post of allPosts) {
-    add(`artiklid/${getPostSlugPath(post.id, post.filePath)}`, {
+    const prefix = post.data.category ? slugify(post.data.category) : 'artiklid';
+    add(`${prefix}/${getPostSlugPath(post.id, post.filePath)}`, {
       eyebrow: post.data.category ?? 'Artikkel',
       title:   post.data.title,
     });

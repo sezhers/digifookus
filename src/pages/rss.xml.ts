@@ -17,7 +17,7 @@ export async function GET(context: APIContext) {
       pubDate: entry.data.published,
       link:
         entry.collection === "posts"
-          ? getPostUrl(entry.id, entry.filePath)
+          ? getPostUrl(entry.id, entry.filePath, entry.data.category)
           : getNoteUrl(entry.id, entry.filePath),
       categories: [entry.collection === "posts" ? "Artikkel" : "Märge"],
     })),

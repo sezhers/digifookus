@@ -1,18 +1,18 @@
 ---
-/**
- * Fallback route for posts without a category — categorized posts live at
- * /<category>/<slug> instead (see src/pages/[category]/[slug].astro).
- */
 import ArticleDetail from "@/components/ArticleDetail.astro";
 import { getAllPosts, getPostSlugPath } from "@/utils/content";
+import { slugify } from "@/utils/text";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
 
   return posts
-    .filter((post) => !post.data.category)
+    .filter((post) => post.data.category)
     .map((post) => ({
-      params: { slug: getPostSlugPath(post.id, post.filePath) },
+      params: {
+        category: slugify(post.data.category!),
+        slug: getPostSlugPath(post.id, post.filePath),
+      },
       props: { post },
     }));
 }
