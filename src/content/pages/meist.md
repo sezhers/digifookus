@@ -15,11 +15,7 @@ Digifookus kirjutab digitaalsest maailmast — tehnoloogiast, tehisintellektist,
 - **Privaatsus** — kuidas vähendada jälgimist ja hoida kontrolli oma andmete üle.
 - **Krüptograafia** — selgitused selle kohta, mis krüpteerimise ja HTTPS-i taga tegelikult toimub.
 - **Plokiahel** — plokiahela tehnoloogia enda toimimine, väljaspool spekulatsiooni.
-- **Krüptorahad** — Bitcoin, Ethereum ja teised — selgelt ja ilma haibita.
-
-## Miks Digifookus
-
-Digitaalne maailm muutub kiiremini, kui enamik meist jõuab jälgida. Digifookuse eesmärk on hoida fookus seal, kus see loeb — arusaadavas, ausas ja süvitsi minevas sisus tehnoloogiamaailma kohta.
+- **Krüptorahad** — Bitcoin, Ethereum jne — selgelt ja ilma haibita.
 
 ## Autorid
 

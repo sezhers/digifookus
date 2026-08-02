@@ -8,8 +8,13 @@ sameAs:
   - https://github.com/sezhers
 ---
 
-Digifookuse põhiline autor on Sergei Ivanov. Sergei on üks Eesti kogenumaid SEO spetsialiste, kellele meeldivad erinevad tehnoloogiad, digitaalsed lahendused ja kiiresti muutuv digitaalne maailm.
+Sergei on Digifookuse põhiautor. 
+
+Sergei on üks Eesti kogenumaid SEO spetsialiste, kellele meeldib jälgida tehnoloogiaarenguid, kasutada erinevaid digitaalseid lahendusi ja olla osa kiiresti muutuvast digitaalsest maailmast.
+
+Osa artikleid ja märkmeid on kirjutatud isikliku kogemuse põhjalt, teised on jällegi üle võetud maailmast ja kohandatud Eesti oludesse. Eestis kui e-riigis on tähtis teada, kuhu tehnoloogiad edasi liiguvad ja milliseid neist võiks võtta kasutusele nii oma koduse kui tööelu parendamiseks.
 
 ## Kontakt
 
-- Veeb: [hornet.ee](https://hornet.ee)
+- Veebileht: [SEO agentuur](https://hornet.ee)
+- LinkedIn: [Sergei Ivanov](https://www.linkedin.com/in/sergei-ivanov-seo/)
