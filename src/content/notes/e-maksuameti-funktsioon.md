@@ -11,7 +11,7 @@ lang: et
 author: sergei
 ---
 
-Kui pank küsib laenutaotluse juurde tuluõiendit või tulude tõendit, on esimene reaktsioon sageli pöörduda raamatupidaja või tööandja poole. Tegelikult on see enda kätte võimalik saada otse **e-Maksuametist (e-MTA)** — süsteem, mis juba teab kõike, mis su tuludeklaratsioonides ja tööandja esitatud andmetes kirjas on.
+Kui pank küsib laenutaotluse juurde tulude tõendit, on esimene reaktsioon sageli pöörduda raamatupidaja või tööandja poole. Tegelikult on see enda kätte võimalik saada otse **e-Maksuametist (e-MTA)** — süsteem, mis juba teab kõike, mis su tuludeklaratsioonides ja tööandja esitatud andmetes kirjas on.
 
 e-MTA-sse sisse logides (ID-kaart, Mobiil-ID või Smart-ID) leiab oma varasemate aastate tuludeklaratsioonid ja saab need vajadusel uuesti alla laadida — samuti ülevaate sellest, mida tööandjad on sinu kohta deklareerinud. See on sama info, mida pank tegelikult tahab näha, ainult et selle saab kätte minutiga, mitte päevade jooksul raamatupidamiselt oodates.
 

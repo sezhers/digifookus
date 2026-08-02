@@ -14,4 +14,4 @@ Kui proovid sama küsimust mitme eri AI-vestlusroboti peal, on tulemused sisult 
 
 See pole juhus. Mudeleid treenitakse osaliselt inimeste tagasiside põhjal ("kumb vastus meeldib rohkem"), ja inimesed kipuvad eelistama viisakat, struktureeritud ja kindlameelsena kõlavat teksti — isegi kui sisu pole tegelikult parem. Tulemus on stiil, mis optimeerib meeldivuse, mitte tingimata täpsuse järgi.
 
-Praktiline järeldus: enesekindel toon ei ole täpsuse näitaja. Mudel kõlab sama kindlalt nii siis, kui vastus on õige, kui ka siis, kui see on täiesti väljamõeldud. Kui otsustad millegi olulise põhjal, tasub vaadata *mida* vastatakse, mitte kui veenvalt see kõlab.
+Praktiline järeldus: enesekindel toon ei ole täpsuse näitaja. Mudel kõlab sama kindlalt nii siis, kui vastus on õige, kui ka siis, kui see on täiesti väljamõeldud. Kui otsid infot mingi olulise otsuse jaoks, tasub vaadata *mida* vastatakse, mitte kui veenvalt see kõlab.

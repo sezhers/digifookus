@@ -1,0 +1,37 @@
+name: Scheduled rebuild for time-gated content
+
+# Content is scheduled via `published:` frontmatter dates — a post/note
+# only becomes visible once that date arrives (see isVisiblePost/
+# isVisibleNote in src/utils/content.ts). Since this is a static site,
+# that check only re-runs at *build* time, and Cloudflare Pages only
+# builds on git push. Without this workflow, a scheduled post silently
+# never appears until someone happens to push a new commit.
+#
+# This pings a Cloudflare Pages Deploy Hook on a schedule to force a
+# rebuild, so newly-due content actually goes live without a code push.
+#
+# Setup required (one-time, in the Cloudflare + GitHub dashboards):
+# 1. Cloudflare Pages project → Settings → Builds & deployments →
+#    Deploy hooks → create one for the production branch → copy the URL.
+# 2. GitHub repo → Settings → Secrets and variables → Actions →
+#    New repository secret → name it CF_PAGES_DEPLOY_HOOK, paste the URL.
+
+on:
+  schedule:
+    # Every 6 hours. Adjust if this approaches your Cloudflare Pages
+    # plan's monthly build-count limit — each run here is one build,
+    # in addition to any builds from normal git pushes.
+    - cron: "15 */6 * * *"
+  workflow_dispatch: {} # lets you trigger a rebuild manually from the Actions tab
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deploy hook
+        run: |
+          if [ -z "${{ secrets.CF_PAGES_DEPLOY_HOOK }}" ]; then
+            echo "::error::CF_PAGES_DEPLOY_HOOK secret is not set — see the setup steps in this file's header comment."
+            exit 1
+          fi
+          curl -fsS -X POST "${{ secrets.CF_PAGES_DEPLOY_HOOK }}"
