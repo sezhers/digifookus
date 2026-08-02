@@ -64,7 +64,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   // ── Notes ───────────────────────────────────────────────────────────────
   for (const note of allNotes) {
-    add(`markmed/${getNoteSlugPath(note.id, note.filePath)}`, {
+    const prefix = note.data.category ? slugify(note.data.category) : 'markmed';
+    add(`${prefix}/${getNoteSlugPath(note.id, note.filePath)}`, {
       eyebrow: note.data.category ?? 'Märge',
       title:   note.data.title,
     });

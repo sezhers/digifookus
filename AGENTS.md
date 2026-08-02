@@ -307,13 +307,26 @@ Astro scaffold:
   directives, `:::quote{author="Name"}` attributed pull-quotes, inline image
   galleries with a lightbox (GLightbox), and note backlinks
   (`buildBacklinkMap()` in [utils/content.ts](src/utils/content.ts)).
+  **Known limitation**: `wikilinkResolver` in `satteri.ts` always resolves
+  `[[Wikilinks]]` to `/markmed/<slug>` — it runs per-file during markdown
+  processing and has no access to other notes' `category` field, so it
+  can't know a target note's real nested URL. If a wikilinked note has a
+  category, its canonical URL is `/<category>/<slug>` instead, and the
+  wikilink will 404 unless a matching entry is added to `public/_redirects`.
+  Explicit markdown links (`[text](/category/slug)`) are unaffected — write
+  those with the real path instead of using a wikilink when this matters.
 - **Categories**: posts/notes carry a plain `category` string field (schema
   in [content.config.ts](src/content.config.ts)). Each distinct value gets
-  a flat top-level route automatically via
+  a flat top-level index route automatically via
   [src/pages/[category]/index.astro](src/pages/[category]/index.astro) — no
   config needed, driven by `getMetaValues()` in
   [utils/browse.ts](src/utils/browse.ts), which also has a fallback so any
-  future `meta.<key>` dimension works the same way.
+  future `meta.<key>` dimension works the same way. Individual categorized
+  posts/notes live at `/<category>/<slug>` via
+  [src/pages/[category]/[slug].astro](src/pages/[category]/[slug].astro),
+  which merges both collections in one `getStaticPaths()` and dispatches to
+  `ArticleDetail.astro` or `NoteDetail.astro`. Uncategorized posts/notes
+  fall back to `/artiklid/<slug>` / `/markmed/<slug>` respectively.
   **Route collision risk**: category slugs live at the top level
   (`/<category-slug>`), same as pages. A new page whose filename slugifies
   to an existing category name (e.g. a page named `privaatsus.md` when

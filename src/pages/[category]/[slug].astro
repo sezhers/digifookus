@@ -1,23 +1,36 @@
 ---
 import ArticleDetail from "@/components/ArticleDetail.astro";
-import { getAllPosts, getPostSlugPath } from "@/utils/content";
+import NoteDetail from "@/components/NoteDetail.astro";
+import { getAllPosts, getAllNotes, getPostSlugPath, getNoteSlugPath } from "@/utils/content";
 import { slugify } from "@/utils/text";
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts();
+  const [posts, notes] = await Promise.all([getAllPosts(), getAllNotes()]);
 
-  return posts
+  const postPaths = posts
     .filter((post) => post.data.category)
     .map((post) => ({
       params: {
         category: slugify(post.data.category!),
         slug: getPostSlugPath(post.id, post.filePath),
       },
-      props: { post },
+      props: { kind: "post" as const, post },
     }));
+
+  const notePaths = notes
+    .filter((note) => note.data.category)
+    .map((note) => ({
+      params: {
+        category: slugify(note.data.category!),
+        slug: getNoteSlugPath(note.id, note.filePath),
+      },
+      props: { kind: "note" as const, note },
+    }));
+
+  return [...postPaths, ...notePaths];
 }
 
-const { post } = Astro.props;
+const { kind, post, note } = Astro.props;
 ---
 
-<ArticleDetail post={post} />
+{kind === "post" ? <ArticleDetail post={post} /> : <NoteDetail note={note} />}

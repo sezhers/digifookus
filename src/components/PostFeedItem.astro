@@ -21,7 +21,7 @@ const cover = isNote ? undefined : getCoverImage(post.data.cover);
 const date = formatDate(post.data.published);
 const monthYear = formatMonthYear(post.data.published);
 const href = isNote
-  ? getNoteUrl(post.id, post.filePath)
+  ? getNoteUrl(post.id, post.filePath, post.data.category)
   : getPostUrl(post.id, post.filePath, post.data.category);
 const typeLabel = isNote ? "Märge" : "Artikkel";
 

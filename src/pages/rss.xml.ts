@@ -18,7 +18,7 @@ export async function GET(context: APIContext) {
       link:
         entry.collection === "posts"
           ? getPostUrl(entry.id, entry.filePath, entry.data.category)
-          : getNoteUrl(entry.id, entry.filePath),
+          : getNoteUrl(entry.id, entry.filePath, entry.data.category),
       categories: [entry.collection === "posts" ? "Artikkel" : "Märge"],
     })),
   });

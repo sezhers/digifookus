@@ -1,0 +1,150 @@
+---
+import { render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import GalleryLightbox from "@/components/GalleryLightbox.astro";
+import StructuredData from "@/components/StructuredData.astro";
+import { getAllPages, getNoteSlugPath, getPageSlugPath, getPageUrl, getNoteUrl, buildBacklinkMap } from "@/utils/content";
+import { formatDate, slugify } from "@/utils/text";
+import { getAssetPath, absoluteUrl, getOgImagePath } from "@/utils/url";
+import { getConfig } from "@/utils/config";
+import { buildArticleSchema, buildBreadcrumbSchema } from "@/utils/schema";
+
+interface Props {
+  note: CollectionEntry<"notes">;
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+
+const siteConfig = await getConfig();
+const date = formatDate(note.data.published);
+
+const backlinkMap = await buildBacklinkMap();
+const noteSlug = getNoteSlugPath(note.id, note.filePath);
+const backlinks = [
+  ...new Map(
+    (backlinkMap.get(noteSlug) ?? [])
+      .filter((link) => link.slug !== noteSlug)
+      .map((link) => [link.slug, link] as const)
+  ).values(),
+];
+
+const allPages = await getAllPages();
+const authorPage = note.data.author
+  ? allPages.find((p) => getPageSlugPath(p.id, p.filePath) === note.data.author)
+  : undefined;
+const authorName = authorPage?.data.title ?? siteConfig.author.name;
+const authorUrl = authorPage ? getPageUrl(authorPage.id, authorPage.filePath) : undefined;
+
+const notePath = getNoteUrl(note.id, note.filePath, note.data.category);
+const backHref = note.data.category ? getAssetPath(slugify(note.data.category)) : getAssetPath("markmed");
+const backLabel = note.data.category ?? "Märkmed";
+
+const schema = buildArticleSchema({
+  headline: note.data.title,
+  description: note.data.description ?? siteConfig.description,
+  datePublished: note.data.published,
+  dateModified: note.data.updated,
+  authorName,
+  authorUrl: authorUrl ? absoluteUrl(authorUrl, Astro.site) : siteConfig.author.url,
+  publisherName: siteConfig.title,
+  publisherUrl: absoluteUrl("/", Astro.site),
+  publisherLogo: siteConfig.logo ? absoluteUrl(siteConfig.logo, Astro.site) : undefined,
+  image: absoluteUrl(getOgImagePath(notePath), Astro.site),
+  url: absoluteUrl(notePath, Astro.site),
+  locale: siteConfig.locale,
+  keywords: note.data.tags,
+  articleSection: note.data.category,
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: siteConfig.title, url: absoluteUrl("/", Astro.site) },
+  { name: "Märkmed", url: absoluteUrl(getAssetPath("markmed"), Astro.site) },
+  ...(note.data.category
+    ? [{ name: note.data.category, url: absoluteUrl(getAssetPath(slugify(note.data.category)), Astro.site) }]
+    : []),
+  { name: note.data.title, url: absoluteUrl(notePath, Astro.site) },
+]);
+
+const schemas = [schema, breadcrumbSchema];
+---
+
+<BaseLayout title={note.data.title} description={note.data.description} type="article">
+  <StructuredData schema={schemas} slot="head" />
+  <div class="layout-content">
+    <article class="markdown-content mx-auto max-w-3xl py-8">
+      <a
+        href={backHref}
+        class="not-prose font-mono text-xs uppercase tracking-wide text-clay hover:underline"
+      >
+        ← {backLabel}
+      </a>
+
+      <h1 class="not-prose mt-8 font-serif text-4xl leading-tight">
+        {note.data.title}
+      </h1>
+
+      <div class="not-prose mt-4 flex items-center gap-2">
+        <time
+          datetime={note.data.published.toISOString()}
+          class="rounded-xs border border-border px-1 font-mono text-xs uppercase tabular-nums text-muted-foreground"
+        >
+          {date}
+        </time>
+        {note.data.category && (
+          <>
+            <span class="text-muted-foreground/50">·</span>
+            <a
+              href={getAssetPath(slugify(note.data.category))}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
+              {note.data.category}
+            </a>
+          </>
+        )}
+        {authorUrl && (
+          <>
+            <span class="text-muted-foreground/50">·</span>
+            <a
+              href={authorUrl}
+              class="font-mono text-xs uppercase text-muted-foreground hover:underline"
+            >
+              {authorName}
+            </a>
+          </>
+        )}
+      </div>
+
+      <hr class="not-prose mt-6 border-border/50" />
+      <aside data-pagefind-body>
+        <meta data-pagefind-meta="title[content]" content={note.data.title} />
+        <meta data-pagefind-sort="date[content]" content={note.data.published.toISOString()} />
+        <meta data-pagefind-filter="collection[content]" content={note.collection} />
+        <meta data-pagefind-filter="category[content]" content={note.data.category} />
+        <Content />
+      </aside>
+
+      {backlinks.length > 0 && (
+        <div class="not-prose mt-10 border-t border-border/50 pt-4">
+          <h2 class="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+            Tagasilingid
+          </h2>
+          <ul class="mt-2 space-y-1">
+            {backlinks.map((link) => (
+              <li>
+                <a
+                  href={getAssetPath(`${link.category ? slugify(link.category) : "markmed"}/${link.slug}`)}
+                  class="font-serif text-foreground hover:underline"
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </article>
+  </div>
+  <GalleryLightbox />
+</BaseLayout>

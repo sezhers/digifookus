@@ -337,28 +337,29 @@ export function getNoteSlug(
 }
 
 /**
- * Full note URL.
- *
- * Example:
- * "/markmed/tech/self-hosting"
+ * Full note URL — nested under the note's category when it has one
+ * (e.g. "/turvalisus/wifi-ruuteri-seadistus"), falling back to
+ * "/markmed/<slug>" for notes without a category.
  */
 export function getNoteUrl(
   id: string,
-  filePath?: string
+  filePath?: string,
+  category?: string
 ): string {
+  const prefix = category ? slugify(category) : "markmed";
   return getAssetPath(
-    `markmed/${getNoteSlugPath(id, filePath)}`
+    `${prefix}/${getNoteSlugPath(id, filePath)}`
   );
 }
 
-export async function buildBacklinkMap(): Promise<Map<string, { title: string; slug: string }[]>> {
+export async function buildBacklinkMap(): Promise<Map<string, { title: string; slug: string; category?: string }[]>> {
   const notes = await getAllNotes();
-  const map = new Map<string, { title: string; slug: string }[]>();
+  const map = new Map<string, { title: string; slug: string; category?: string }[]>();
 
   for (const note of notes) {
     const body = note.body ?? '';
     const noteSlug = getNoteSlugPath(note.id, note.filePath);
-    const entry = { title: note.data.title, slug: noteSlug };
+    const entry = { title: note.data.title, slug: noteSlug, category: note.data.category };
 
     // wikilinks: [[Target]], [[Target|Alias]], [[Target#Heading]] — key by the
     // same slug wikilinkResolver (src/plugins/satteri.ts) resolves the target to.
@@ -370,8 +371,8 @@ export async function buildBacklinkMap(): Promise<Map<string, { title: string; s
       map.get(key)!.push(entry);
     }
 
-    // markdown links: [text](/markmed/slug)
-    for (const match of body.matchAll(/\[([^\]]+)\]\(\/markmed\/([^)#]+)/g)) {
+    // markdown links: [text](/markmed/slug) or [text](/<category>/slug)
+    for (const match of body.matchAll(/\[([^\]]+)\]\(\/(?:markmed|[a-z-]+)\/([^)#]+)/g)) {
       const key = match[2];
       if (!map.has(key)) map.set(key, []);
       map.get(key)!.push(entry);
