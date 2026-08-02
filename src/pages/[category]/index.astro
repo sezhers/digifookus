@@ -3,7 +3,22 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHeader from "@/components/PageHeader.astro";
 import BrowseTabs from "@/components/BrowseTabs.astro";
 import BrowseList from "@/components/BrowseList.astro";
+import ImageWrapper from "@/components/ImageWrapper.astro";
 import StructuredData from "@/components/StructuredData.astro";
+
+// Hero images for the 8 official categories (public/, so served as-is —
+// not run through Astro's image pipeline). Unmapped/future categories
+// simply render without a hero image.
+const categoryImages: Record<string, string> = {
+  tehnoloogia: "/tehnoloogia.jpg",
+  tehisintellekt: "/tehisintellekt.jpg",
+  digiteenused: "/digiteenused.jpg",
+  turvalisus: "/turvalisus.jpg",
+  privaatsus: "/privaatsus.jpg",
+  kruptograafia: "/kruptograafia.jpg",
+  plokiahel: "/plokiahel.jpg",
+  kruptorahad: "/krupto.jpg",
+};
 import { getAllPosts, getAllNotes, getAllEntries } from "@/utils/content";
 import { getMetaValues, filterByMetaSlug } from "@/utils/browse";
 import { getAssetPath, absoluteUrl } from "@/utils/url";
@@ -25,6 +40,7 @@ interface Props {
 
 const { categoryName } = Astro.props as Props;
 const { category: categorySlug } = Astro.params;
+const categoryImage = categorySlug ? categoryImages[categorySlug] : undefined;
 
 const allEntries = await getAllEntries();
 const allPosts = await getAllPosts();
@@ -47,6 +63,15 @@ const breadcrumbSchema = buildBreadcrumbSchema([
     >
       ← Arhiiv
     </a>
+
+    {categoryImage && (
+      <ImageWrapper
+        src={categoryImage}
+        alt={categoryName}
+        bare
+        class="not-prose mt-6 aspect-[3/1] w-full object-cover"
+      />
+    )}
 
     <PageHeader eyebrow="Kategooria" title={categoryName} />
 
