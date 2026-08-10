@@ -1,5 +1,6 @@
 ---
 import { getConfig } from "@/utils/config";
+import { getAssetPath } from "@/utils/url";
 
 const siteConfig = await getConfig();
 ---
@@ -12,7 +13,7 @@ const siteConfig = await getConfig();
     <div class="flex items-center gap-4">
       <nav class="flex gap-4 font-mono text-xs text-muted-foreground">
         {siteConfig.footerLinks?.map((item) => (
-          <a href={item.url} class="hover:text-foreground">{item.title}</a>
+          <a href={getAssetPath(item.url)} class="hover:text-foreground">{item.title}</a>
         ))}
       </nav>
     </div>
