@@ -60,7 +60,7 @@ const schemas = [schema, organizationSchema];
       title={siteConfig.title}
       lede={siteConfig.heroText}
     />
-		<Section title="Viimased artiklid" href="/artiklid">
+		<Section title="Viimased artiklid" href={getAssetPath("artiklid")}>
 			<!-- Lead Entry -->
       {featuredEntry && (
         <article class="grid items-start gap-8 sm:grid-cols-[1.2fr_1fr]">
@@ -121,7 +121,7 @@ const schemas = [schema, organizationSchema];
 
 		<Section
   		title="Viimased märkmed"
-  		href="/markmed"
+  		href={getAssetPath("markmed")}
       class="mt-6"
 		>
   		<NotesGrid notes={recentNotes} />

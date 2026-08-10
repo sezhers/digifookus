@@ -19,7 +19,7 @@ Digifookus kirjutab digitaalsest maailmast — tehnoloogiast, tehisintellektist,
 
 ## Autorid
 
-Artiklite juures on kirjas nende autor. Digifookuse põhiautoriks on [Sergei](/sergei).
+Artiklite juures on kirjas nende autor. Digifookuse põhiautoriks on [Sergei](/sergei/).
 
 ## Kontakt
 
@@ -50,4 +50,4 @@ Artiklite juures on kirjas nende autor. Digifookuse põhiautoriks on [Sergei](/s
 <button type="submit">Saada sõnum</button>
 </form>
 
-*Vormi saates nõustud, et sinu andmeid töödeldakse vastavalt [privaatsusteatele](/andmekaitse).*
+*Vormi saates nõustud, et sinu andmeid töödeldakse vastavalt [privaatsusteatele](/andmekaitse/).*
