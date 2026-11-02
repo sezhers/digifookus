@@ -16,5 +16,5 @@ Osa artikleid ja märkmeid on kirjutatud isikliku kogemuse põhjalt, teised on j
 
 ## Kontakt
 
-- Veebileht: [SEO agentuur](https://hornet.ee)
+- Veebileht: [SEO agentuur](https://hornet.ee/seo-teenus/)
 - LinkedIn: [Sergei Ivanov](https://www.linkedin.com/in/sergei-ivanov-seo/)
